@@ -15,7 +15,12 @@ class GiveawaysRepository: GiveawaysRepositoryProtocol {
     }
     
     private func convertToDomain(_ model: GiveawayModel) -> GiveawayEntity {
-        GiveawayEntity(id: model.id, title: model.title, platforms: model.platforms, description: model.description)
+        GiveawayEntity(
+            id: model.id,
+            title: model.title,
+            platforms: model.platforms,
+            description: model.description
+        )
     }
 
     func getAllGiveaways() -> AnyPublisher<[GiveawayEntity], Error> {
