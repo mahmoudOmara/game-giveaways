@@ -11,7 +11,7 @@ import Moya
 import Foundation
 @testable import GameGiveaways
 
-class MockApiClient: ApiClientProtocol {
+class MockGameGiveawaysApiClient: ApiClientProtocol {
     var shouldReturnError = false
 
     func request<T: Decodable>(_ target: TargetType) -> AnyPublisher<T, Error> {
