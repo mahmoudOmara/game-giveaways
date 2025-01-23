@@ -19,8 +19,8 @@ included:
 
 
 line_length:
-  warning: 80
-  error: 100
+  warning: 100
+  error: 120
 
 identifier_name:
   min_length: 3
