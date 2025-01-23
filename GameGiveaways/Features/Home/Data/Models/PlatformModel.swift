@@ -1,10 +1,10 @@
 //
-//  PlatformEntity.swift
+//  PlatformModel.swift
 //  GameGiveaways
 //
 //  Created by mac on 23/01/2025.
 //
 
-struct PlatformEntity {
+struct PlatformModel {
     let name: String
 }
