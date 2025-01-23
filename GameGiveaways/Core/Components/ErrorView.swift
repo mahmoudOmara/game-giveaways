@@ -18,18 +18,18 @@ struct ErrorView: View {
                 .frame(width: 50, height: 50)
                 .foregroundColor(.red)
                 .padding(.top, 20)
-
+            
             Text("Oops! Something went wrong")
                 .multilineTextAlignment(.center)
                 .font(.title2)
                 .fontWeight(.bold)
                 .foregroundColor(.black)
-
+            
             Text(message)
                 .multilineTextAlignment(.center)
                 .foregroundColor(.gray)
                 .padding(.horizontal, 20)
-
+            
             if let retryAction = retryAction {
                 Button(action: retryAction) {
                     Text("Retry")
@@ -48,6 +48,7 @@ struct ErrorView: View {
         .cornerRadius(12)
         .shadow(radius: 10)
         .padding(.horizontal, 40)
+        .transition(.opacity.animation(.easeInOut(duration: 0.5)))
     }
 }
 
