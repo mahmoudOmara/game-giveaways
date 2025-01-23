@@ -24,7 +24,8 @@ class MockGiveawaysRepository: GiveawaysRepositoryProtocol {
                 id: 1,
                 title: "Free Steam Game",
                 platforms: "Test giveaway",
-                description: "PC"
+                description: "PC",
+                thumbnailURL: URL(string: "test://test-thumbnail.jpg")
             )
         ]
         
@@ -44,7 +45,8 @@ class MockGiveawaysRepository: GiveawaysRepositoryProtocol {
                 id: 2,
                 title: "Free Xbox Game",
                 platforms: platform,
-                description: "Filtered giveaway"
+                description: "Filtered giveaway",
+                thumbnailURL: URL(string: "test://test-thumbnail.jpg")
             )
         ]
         

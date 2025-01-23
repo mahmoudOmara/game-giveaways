@@ -24,7 +24,8 @@ class MockGetAllGiveawaysUseCase: GetAllGiveawaysUseCaseProtocol {
                 id: 1,
                 title: "Test Giveaway",
                 platforms: "PC",
-                description: "Test description"
+                description: "Test description",
+                thumbnailURL: URL(string: "test://test-thumbnail.jpg")
             )
         ]
         return Just(giveaways)

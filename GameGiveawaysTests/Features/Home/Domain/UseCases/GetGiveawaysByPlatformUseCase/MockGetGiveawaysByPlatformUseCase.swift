@@ -24,7 +24,8 @@ class MockGetGiveawaysByPlatformUseCase: GetGiveawaysByPlatformUseCaseProtocol {
                 id: 2,
                 title: "Filtered Giveaway",
                 platforms: platform,
-                description: "Filtered giveaway description"
+                description: "Filtered giveaway description",
+                thumbnailURL: URL(string: "test://test-thumbnail.jpg")
             )
         ]
         return Just(filteredGiveaways)

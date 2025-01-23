@@ -16,16 +16,14 @@ class HomeFeatureStubs {
             title: "Free Steam Game",
             platforms: "PC",
             description: "A free giveaway for Steam users.",
-            thumbnailURL: URL(string: "https://www.gamerpower.com/offers/1/6717d4efdd754.jpg")!
-            // swiftlint:disable:previous force_unwrapping
+            thumbnailURL: URL(string: "https://www.gamerpower.com/offers/1/6717d4efdd754.jpg")
         ),
         GiveawayEntity(
             id: 2,
             title: "Free Xbox Game",
             platforms: "Xbox",
             description: "A free giveaway for Xbox users.",
-            thumbnailURL: URL(string: "https://www.gamerpower.com/offers/1/6717d4efdd754.jpg")!
-            // swiftlint:disable:previous force_unwrapping
+            thumbnailURL: URL(string: "https://www.gamerpower.com/offers/1/6717d4efdd754.jpg")
         )
     ]
 

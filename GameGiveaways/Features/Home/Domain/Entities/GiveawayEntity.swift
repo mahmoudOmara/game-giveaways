@@ -12,5 +12,5 @@ struct GiveawayEntity: Identifiable {
     let title: String
     let platforms: String
     let description: String
-    let thumbnailURL: URL
+    let thumbnailURL: URL?
 }
