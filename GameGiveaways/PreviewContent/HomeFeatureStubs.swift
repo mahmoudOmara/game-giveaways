@@ -26,6 +26,33 @@ class HomeFeatureStubs {
             thumbnailURL: URL(string: "https://www.gamerpower.com/offers/1/6717d4efdd754.jpg")
         )
     ]
+    
+    static let sampleUser: UserEntity = UserEntity(
+        name: "Mahmoud",
+        profileImageURL: URL(string: "https://www.gamerpower.com/offers/1/6717d4efdd754.jpg")
+    )
+    
+    static let samplePlatforms: [PlatformEntity] = [
+        PlatformEntity(name: "PC"),
+        PlatformEntity(name: "PlayStation"),
+        PlatformEntity(name: "Xbox")
+    ]
+    
+    class GetUserProfileUseCaseStub: GetUserProfileUseCaseProtocol {
+        func execute() -> AnyPublisher<UserEntity, Never> {
+            Just(HomeFeatureStubs.sampleUser)
+                .setFailureType(to: Never.self)
+                .eraseToAnyPublisher()
+        }
+    }
+    
+    class GetPlatformsUseCaseStub: GetPlatformsUseCaseProtocol {
+        func execute() -> AnyPublisher<[PlatformEntity], Never> {
+            Just(HomeFeatureStubs.samplePlatforms)
+                .setFailureType(to: Never.self)
+                .eraseToAnyPublisher()
+        }
+    }
 
     class GetAllGiveawaysUseCaseStub: GetAllGiveawaysUseCaseProtocol {
         func execute() -> AnyPublisher<[GiveawayEntity], Error> {
