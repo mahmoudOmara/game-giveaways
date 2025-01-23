@@ -9,14 +9,15 @@ import SwiftUI
 
 struct ErrorView: View {
     let message: String
-    let retryAction: (() -> Void)?
+    var tintColor: Color = .accentColor
+    var retryAction: (() -> Void)?
 
     var body: some View {
         VStack(alignment: .center, spacing: 16) {
             Image(systemName: "exclamationmark.triangle.fill")
                 .resizable()
                 .frame(width: 50, height: 50)
-                .foregroundColor(.red)
+                .foregroundColor(tintColor)
                 .padding(.top, 20)
             
             Text("Oops! Something went wrong")
@@ -36,7 +37,7 @@ struct ErrorView: View {
                         .font(.headline)
                         .foregroundColor(.white)
                         .frame(width: 120, height: 44)
-                        .background(Color.red)
+                        .background(tintColor)
                         .cornerRadius(10)
                         .shadow(radius: 5)
                 }
@@ -53,11 +54,15 @@ struct ErrorView: View {
 }
 
 #Preview {
-    ErrorView(message: "Network connection lost") {
-        print("Retry tapped")
-    }
+    ErrorView(
+        message: "Network connection lost",
+        tintColor: .purple,
+        retryAction: {
+            print("Retry tapped")
+        }
+    )
 }
 
 #Preview {
-    ErrorView(message: "An unknown error occurred", retryAction: nil)
+    ErrorView(message: "An unknown error occurred")
 }
