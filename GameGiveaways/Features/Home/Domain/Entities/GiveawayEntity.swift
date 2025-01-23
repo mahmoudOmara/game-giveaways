@@ -10,4 +10,6 @@ import Foundation
 struct GiveawayEntity: Identifiable {
     let id: Int
     let title: String
+    let platforms: String
+    let description: String
 }
