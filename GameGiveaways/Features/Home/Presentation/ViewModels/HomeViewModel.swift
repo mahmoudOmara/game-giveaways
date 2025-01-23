@@ -42,6 +42,7 @@ class HomeViewModel: ObservableObject {
                 switch completion {
                 case .failure(let error):
                     self?.state = .failure(error.localizedDescription)
+                    
                 case .finished:
                     break
                 }
@@ -59,6 +60,7 @@ class HomeViewModel: ObservableObject {
                 switch completion {
                 case .failure(let error):
                     self?.state = .failure(error.localizedDescription)
+                    
                 case .finished:
                     break
                 }

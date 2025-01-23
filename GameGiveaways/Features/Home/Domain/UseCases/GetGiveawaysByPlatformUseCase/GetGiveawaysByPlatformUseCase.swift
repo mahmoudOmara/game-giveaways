@@ -5,7 +5,6 @@
 //  Created by mac on 23/01/2025.
 //
 
-
 import Combine
 
 class GetGiveawaysByPlatformUseCase: GetGiveawaysByPlatformUseCaseProtocol {
