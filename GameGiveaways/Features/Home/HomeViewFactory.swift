@@ -9,15 +9,12 @@ import SwiftUI
 
 struct HomeViewFactory {
     static func createHomeView(coordinator: HomeCoordinatorProtocol) -> some View {
-        let apiClient = ApiClient()
-        
         let userLocalDataSource = UserLocalDataSource()
         let platformsLocalDataSource = PlatformsLocalDataSource()
-        let giveawaysRemoteDataSource = GiveawaysRemoteDataSource(apiClient: apiClient)
         
         let userRepository = UserRepository(dataSource: userLocalDataSource)
         let platformRepository = PlatformRepository(dataSource: platformsLocalDataSource)
-        let giveawaysRepository = GiveawaysRepository(dataSource: giveawaysRemoteDataSource)
+        let giveawaysRepository = SharedFactory.getSharedGiveawaysRepository()
         
         let getUserProfileUseCase = GetUserProfileUseCase(repository: userRepository)
         let getPlatformsUseCase = GetPlatformsUseCase(repository: platformRepository)
