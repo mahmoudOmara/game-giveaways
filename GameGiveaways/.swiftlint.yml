@@ -20,8 +20,8 @@ included:
 
 
 line_length:
-  warning: 100
-  error: 120
+  warning: 130
+  error: 150
 
 identifier_name:
   min_length: 3
