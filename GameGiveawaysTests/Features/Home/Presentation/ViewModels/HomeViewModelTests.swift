@@ -16,6 +16,8 @@ class HomeViewModelTests: XCTestCase {
     var mockGetAllGiveawaysUseCase: MockGetAllGiveawaysUseCase!
     var mockGetFilteredGiveawaysUseCase: MockGetGiveawaysByPlatformUseCase!
     var mockSearchGiveawaysUseCase: MockSearchGiveawaysUseCase!
+    var mockHomeCoordinator: MockHomeCoordinator!
+    
     var viewModel: HomeViewModel!
     var cancellables: Set<AnyCancellable>!
 
@@ -26,12 +28,15 @@ class HomeViewModelTests: XCTestCase {
         mockGetAllGiveawaysUseCase = MockGetAllGiveawaysUseCase()
         mockGetFilteredGiveawaysUseCase = MockGetGiveawaysByPlatformUseCase()
         mockSearchGiveawaysUseCase = MockSearchGiveawaysUseCase()
+        mockHomeCoordinator = MockHomeCoordinator()
+        
         viewModel = HomeViewModel(
             getUserProfileUseCase: mockGetUserProfileUseCase,
             getPlatformsUseCase: mockGetPlatformsUseCase,
             getAllGiveawaysUseCase: mockGetAllGiveawaysUseCase,
             getFilteredGiveawaysUseCase: mockGetFilteredGiveawaysUseCase,
-            searchGiveawaysUseCase: mockSearchGiveawaysUseCase
+            searchGiveawaysUseCase: mockSearchGiveawaysUseCase,
+            coordinator: mockHomeCoordinator
         )
         cancellables = []
     }
@@ -42,6 +47,7 @@ class HomeViewModelTests: XCTestCase {
         mockGetAllGiveawaysUseCase = nil
         mockGetFilteredGiveawaysUseCase = nil
         mockSearchGiveawaysUseCase = nil
+        mockHomeCoordinator = nil
         viewModel = nil
         cancellables = nil
         super.tearDown()
