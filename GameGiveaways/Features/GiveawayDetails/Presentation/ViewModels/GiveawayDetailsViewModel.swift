@@ -29,7 +29,6 @@ class GiveawayDetailsViewModel: ObservableObject {
     init(giveawayID: Int, getGiveawayDetailsUseCase: GetGiveawayDetailsUseCaseProtocol) {
         self.giveawayID = giveawayID
         self.getGiveawayDetailsUseCase = getGiveawayDetailsUseCase
-        fetchGiveawayDetails()
     }
 
     // MARK: - Public Methods
