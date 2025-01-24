@@ -8,6 +8,7 @@
 import SwiftUI
 
 protocol HomeCoordinatorProtocol {
+    var navigationController: UINavigationController { get }
     func start()
     func navigateToDetail(giveaway: GiveawayEntity)
 }
