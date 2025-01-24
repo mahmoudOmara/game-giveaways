@@ -72,5 +72,19 @@ class HomeFeatureStubs {
                 .eraseToAnyPublisher()
         }
     }
+    
+    class StubSearchGiveawaysUseCase: SearchGiveawaysUseCaseProtocol {
+        func execute(
+            giveaways: [GiveawayEntity], query: String
+        ) -> AnyPublisher<[GiveawayEntity], Never> {
+            let filteredGiveaways = giveaways.filter {
+                if query.isEmpty {
+                    return true
+                }
+                return $0.title.lowercased().contains(query.lowercased())
+            }
+            return Just(filteredGiveaways).eraseToAnyPublisher()
+        }
+    }
 }
 #endif

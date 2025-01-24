@@ -76,7 +76,7 @@ struct HomeView: View {
 
     // MARK: - Search Bar
     private var searchBar: some View {
-        TextField("Search Game by name", text: .constant(""))
+        TextField("Search Game by name", text: $viewModel.searchQuery)
             .padding()
             .background(Color.gray.opacity(0.2))
             .cornerRadius(12)
@@ -166,7 +166,8 @@ struct HomeView: View {
             getUserProfileUseCase: HomeFeatureStubs.GetUserProfileUseCaseStub(),
             getPlatformsUseCase: HomeFeatureStubs.GetPlatformsUseCaseStub(),
             getAllGiveawaysUseCase: HomeFeatureStubs.GetAllGiveawaysUseCaseStub(),
-            getFilteredGiveawaysUseCase: HomeFeatureStubs.GetGiveawaysByPlatformUseCaseStub()
+            getFilteredGiveawaysUseCase: HomeFeatureStubs.GetGiveawaysByPlatformUseCaseStub(),
+            searchGiveawaysUseCase: HomeFeatureStubs.StubSearchGiveawaysUseCase()
         )
     )
 }
