@@ -11,6 +11,8 @@ import Combine
 @testable import GameGiveaways
 
 class HomeViewModelTests: XCTestCase {
+    var mockGetUserProfileUseCase: MockGetUserProfileUseCase!
+    var mockGetPlatformsUseCase: MockGetPlatformsUseCase!
     var mockGetAllGiveawaysUseCase: MockGetAllGiveawaysUseCase!
     var mockGetFilteredGiveawaysUseCase: MockGetGiveawaysByPlatformUseCase!
     var viewModel: HomeViewModel!
@@ -18,9 +20,13 @@ class HomeViewModelTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        mockGetUserProfileUseCase = MockGetUserProfileUseCase()
+        mockGetPlatformsUseCase = MockGetPlatformsUseCase()
         mockGetAllGiveawaysUseCase = MockGetAllGiveawaysUseCase()
         mockGetFilteredGiveawaysUseCase = MockGetGiveawaysByPlatformUseCase()
         viewModel = HomeViewModel(
+            getUserProfileUseCase: mockGetUserProfileUseCase,
+            getPlatformsUseCase: mockGetPlatformsUseCase,
             getAllGiveawaysUseCase: mockGetAllGiveawaysUseCase,
             getFilteredGiveawaysUseCase: mockGetFilteredGiveawaysUseCase
         )

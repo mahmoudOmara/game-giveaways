@@ -1,5 +1,5 @@
 //
-//  FilterGiveawaysUseCaseProtocol.swift
+//  SearchGiveawaysUseCaseProtocol.swift
 //  GameGiveaways
 //
 //  Created by mac on 24/01/2025.
