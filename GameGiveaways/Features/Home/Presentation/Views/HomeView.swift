@@ -148,7 +148,7 @@ struct HomeView: View {
         List {
             ForEach(giveaways) { giveaway in
                 GiveawayCard(giveaway: giveaway)
-                    .listRowInsets(EdgeInsets(top: 15, leading: 0, bottom: 15, trailing: 0))
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 30, trailing: 0))
                     .frame(maxWidth: .infinity, minHeight: 200)
             }
             .listRowSeparator(.hidden)
