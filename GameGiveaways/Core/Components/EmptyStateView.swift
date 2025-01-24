@@ -43,6 +43,7 @@ struct EmptyStateView: View {
             }
         }
         .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .transition(.opacity.animation(.easeInOut(duration: 0.5)))
     }
 }

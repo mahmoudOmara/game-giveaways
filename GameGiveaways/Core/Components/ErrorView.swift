@@ -49,6 +49,7 @@ struct ErrorView: View {
         .cornerRadius(12)
         .shadow(radius: 10)
         .padding(.horizontal, 40)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .transition(.opacity.animation(.easeInOut(duration: 0.5)))
     }
 }
