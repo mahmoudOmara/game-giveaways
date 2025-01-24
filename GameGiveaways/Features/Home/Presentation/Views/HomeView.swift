@@ -30,7 +30,7 @@ struct HomeView: View {
             .onAppear {
                 viewModel.loadUserProfile()
                 viewModel.loadPlatforms()
-                viewModel.loadGiveaways()
+                viewModel.platformFilter = .all
             }
         }
     }
@@ -139,7 +139,7 @@ struct HomeView: View {
             
         case .failure(let message):
             ErrorView(message: message) {
-                viewModel.loadGiveaways()
+                viewModel.refreshConsideringPlatformFilter()
             }
         }
     }

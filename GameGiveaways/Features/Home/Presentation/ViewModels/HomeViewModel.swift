@@ -72,7 +72,16 @@ class HomeViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func loadGiveaways() {
+    func refreshConsideringPlatformFilter() {
+        searchQuery = ""
+        if case .specific(let platform) = platformFilter {
+            loadGiveawaysByPlatform(platform: platform.name)
+        } else {
+            loadGiveaways()
+        }
+    }
+    
+    private func loadGiveaways() {
         state = .loading
         getAllGiveawaysUseCase.execute()
             .receive(on: DispatchQueue.main)
@@ -91,7 +100,7 @@ class HomeViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func loadGiveawaysByPlatform(platform: String) {
+    private func loadGiveawaysByPlatform(platform: String) {
         state = .loading
         getFilteredGiveawaysUseCase.execute(platform: platform)
             .receive(on: DispatchQueue.main)
@@ -108,14 +117,6 @@ class HomeViewModel: ObservableObject {
                 self?.notSearchedGiveaways = giveaways
             })
             .store(in: &cancellables)
-    }
-    
-    func refreshConsideringPlatformFilter() {
-        if case .specific(let platform) = platformFilter {
-            loadGiveawaysByPlatform(platform: platform.name)
-        } else {
-            loadGiveaways()
-        }
     }
     
     // MARK: - Search Setup
