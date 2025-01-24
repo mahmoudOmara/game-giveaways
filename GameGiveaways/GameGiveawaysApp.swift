@@ -11,7 +11,7 @@ import SwiftUI
 struct GameGiveawaysApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeCoordinatorView(coordinator: HomeCoordinator(navigationController: UINavigationController()))
         }
     }
 }
