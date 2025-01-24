@@ -14,7 +14,6 @@ struct GiveawayCard: View {
     var body: some View {
         ZStack(alignment: .topTrailing) {
             thumbnailLayer
-            Color.red
             gradientLayer
             contentLayer
             favoriteButton

@@ -20,6 +20,11 @@ class HomeViewModel: ObservableObject {
     @Published var state: HomeViewState = .idle
     @Published var user: UserEntity?
     @Published var platforms: [PlatformEntity] = []
+    @Published var platformFilter: PlatformFilter? {
+        didSet {
+            refreshConsideringPlatformFilter()
+        }
+    }
     
     // MARK: - Dependencies
     private let getUserProfileUseCase: GetUserProfileUseCaseProtocol
@@ -94,5 +99,13 @@ class HomeViewModel: ObservableObject {
                 self?.state = .success(giveaways)
             })
             .store(in: &cancellables)
+    }
+    
+    func refreshConsideringPlatformFilter() {
+        if case .specific(let platform) = platformFilter {
+            loadGiveawaysByPlatform(platform: platform.name)
+        } else {
+            loadGiveaways()
+        }
     }
 }
