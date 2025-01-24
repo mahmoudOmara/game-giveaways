@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeViewFactory {
-    static func createHomeView() -> some View {
+    static func createHomeView(coordinator: HomeCoordinatorProtocol) -> some View {
         let apiClient = ApiClient()
         
         let userLocalDataSource = UserLocalDataSource()
@@ -30,7 +30,8 @@ struct HomeViewFactory {
             getPlatformsUseCase: getPlatformsUseCase,
             getAllGiveawaysUseCase: getAllGiveawaysUseCase,
             getFilteredGiveawaysUseCase: getGiveawaysByPlatformUseCase,
-            searchGiveawaysUseCase: searchGiveawaysUseCase)
+            searchGiveawaysUseCase: searchGiveawaysUseCase,
+            coordinator: coordinator)
         
         let view = HomeView(viewModel: viewModel)
         return view

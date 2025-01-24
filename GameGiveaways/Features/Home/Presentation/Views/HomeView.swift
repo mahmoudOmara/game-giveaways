@@ -167,7 +167,8 @@ struct HomeView: View {
             getPlatformsUseCase: HomeFeatureStubs.GetPlatformsUseCaseStub(),
             getAllGiveawaysUseCase: HomeFeatureStubs.GetAllGiveawaysUseCaseStub(),
             getFilteredGiveawaysUseCase: HomeFeatureStubs.GetGiveawaysByPlatformUseCaseStub(),
-            searchGiveawaysUseCase: HomeFeatureStubs.StubSearchGiveawaysUseCase()
+            searchGiveawaysUseCase: HomeFeatureStubs.StubSearchGiveawaysUseCase(),
+            coordinator: HomeFeatureStubs.StubHomeCoordinator()
         )
     )
 }

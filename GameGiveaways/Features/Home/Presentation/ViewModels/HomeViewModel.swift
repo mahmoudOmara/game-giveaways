@@ -34,6 +34,8 @@ class HomeViewModel: ObservableObject {
     private let getPlatformsUseCase: GetPlatformsUseCaseProtocol
     private let getAllGiveawaysUseCase: GetAllGiveawaysUseCaseProtocol
     private let getFilteredGiveawaysUseCase: GetGiveawaysByPlatformUseCaseProtocol
+    private let coordinator: HomeCoordinatorProtocol
+
     private var cancellables = Set<AnyCancellable>()
     
     // MARK: - Initializer
@@ -42,13 +44,15 @@ class HomeViewModel: ObservableObject {
         getPlatformsUseCase: GetPlatformsUseCaseProtocol,
         getAllGiveawaysUseCase: GetAllGiveawaysUseCaseProtocol,
         getFilteredGiveawaysUseCase: GetGiveawaysByPlatformUseCaseProtocol,
-        searchGiveawaysUseCase: SearchGiveawaysUseCaseProtocol
+        searchGiveawaysUseCase: SearchGiveawaysUseCaseProtocol,
+        coordinator: HomeCoordinatorProtocol
     ) {
         self.getUserProfileUseCase = getUserProfileUseCase
         self.getPlatformsUseCase = getPlatformsUseCase
         self.getAllGiveawaysUseCase = getAllGiveawaysUseCase
         self.getFilteredGiveawaysUseCase = getFilteredGiveawaysUseCase
         self.searchGiveawaysUseCase = searchGiveawaysUseCase
+        self.coordinator = coordinator
         
         setupSearchBinding()
     }

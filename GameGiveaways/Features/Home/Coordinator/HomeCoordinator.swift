@@ -21,12 +21,11 @@ class HomeCoordinator: HomeCoordinatorProtocol {
     }
 
     func start() {
-        let homeView = HomeViewFactory.createHomeView()
+        let homeView = HomeViewFactory.createHomeView(coordinator: self)
         let hostingController = UIHostingController(rootView: homeView)
         navigationController.setViewControllers([hostingController], animated: false)
     }
 
     func navigateToDetail(giveaway: GiveawayEntity) {
-        
     }
 }

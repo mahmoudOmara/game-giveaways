@@ -8,6 +8,7 @@
 #if DEBUG
 import Foundation
 import Combine
+import SwiftUI
 
 class HomeFeatureStubs {
     static let sampleGiveaways: [GiveawayEntity] = [
@@ -84,6 +85,18 @@ class HomeFeatureStubs {
                 return $0.title.lowercased().contains(query.lowercased())
             }
             return Just(filteredGiveaways).eraseToAnyPublisher()
+        }
+    }
+    
+    class StubHomeCoordinator: HomeCoordinatorProtocol {
+        var navigationController: UINavigationController = UINavigationController()
+        
+        func start() {
+            // No-op for previews
+        }
+        
+        func navigateToDetail(giveaway: GiveawayEntity) {
+            print("Stub navigation to detail: \(giveaway.title)")
         }
     }
 }
