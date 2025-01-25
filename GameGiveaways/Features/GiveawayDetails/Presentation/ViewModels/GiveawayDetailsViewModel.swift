@@ -8,16 +8,9 @@
 import SwiftUI
 import Combine
 
-enum GiveawayDetailsState {
-    case idle
-    case loading
-    case success(GiveawayDetailEntity)
-    case failure(String)
-}
-
 class GiveawayDetailsViewModel: ObservableObject {
     // MARK: - Published Properties
-    @Published var state: GiveawayDetailsState = .idle
+    @Published var state: ViewModelState<GiveawayDetailEntity> = .idle
 
     // MARK: - Dependencies
     private let getGiveawayDetailsUseCase: GetGiveawayDetailsUseCaseProtocol
