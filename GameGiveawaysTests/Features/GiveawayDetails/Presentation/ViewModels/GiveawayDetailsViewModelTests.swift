@@ -11,6 +11,8 @@ import Combine
 
 class GiveawayDetailsViewModelTests: XCTestCase {
     var mockUseCase: MockGiveawayDetailsUseCase!
+    var mockGiveawayDetailsCoordinator: MockGiveawayDetailsCoordinator!
+
     var viewModel: GiveawayDetailsViewModel!
     var cancellables: Set<AnyCancellable>!
     
@@ -19,12 +21,18 @@ class GiveawayDetailsViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         mockUseCase = MockGiveawayDetailsUseCase()
-        viewModel = GiveawayDetailsViewModel(giveawayID: giveawayID, getGiveawayDetailsUseCase: mockUseCase)
+        mockGiveawayDetailsCoordinator = MockGiveawayDetailsCoordinator()
+
+        viewModel = GiveawayDetailsViewModel(
+            giveawayID: giveawayID,
+            getGiveawayDetailsUseCase: mockUseCase,
+            coordinator: mockGiveawayDetailsCoordinator)
         cancellables = []
     }
 
     override func tearDown() {
         mockUseCase = nil
+        mockGiveawayDetailsCoordinator = nil
         viewModel = nil
         cancellables = nil
         super.tearDown()

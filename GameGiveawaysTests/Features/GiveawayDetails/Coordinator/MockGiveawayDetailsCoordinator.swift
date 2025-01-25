@@ -1,14 +1,15 @@
 //
-//  MockHomeCoordinator.swift
+//  MockGiveawayDetailsCoordinator.swift
 //  GameGiveaways
 //
-//  Created by mac on 24/01/2025.
+//  Created by mac on 25/01/2025.
 //
+
 
 import SwiftUI
 @testable import GameGiveaways
 
-class MockHomeCoordinator: HomeCoordinatorProtocol {
+class MockGiveawayDetailsCoordinator: GiveawayDetailsCoordinatorProtocol {
     var navigationController: UINavigationController = UINavigationController()
     
     func start() {
@@ -16,6 +17,10 @@ class MockHomeCoordinator: HomeCoordinatorProtocol {
     }
     
     func navigateToDetail(giveaway: GiveawayEntity) {
+        
+    }
+    
+    func back() {
         
     }
 }
