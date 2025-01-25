@@ -121,29 +121,26 @@ struct HomeView: View {
     // MARK: - Content View
     @ViewBuilder
     private var contentView: some View {
-        switch viewModel.state {
-        case .idle, .loading:
-            LoadingView(message: "Loading giveaways...")
-            
-        case .success(let giveaways):
-            if giveaways.isEmpty {
-                EmptyStateView(
-                    message: "No giveaways available",
-                    systemImageName: "tray.fill",
-                    actionTitle: "Refresh") {
-                    viewModel.refreshConsideringPlatformFilter()
+        StateDrivenView(
+            state: viewModel.state,
+            loadingMessage: "Loading giveaways...",
+            retryAction: { viewModel.refreshConsideringPlatformFilter() },
+            content: { giveaways in
+                if giveaways.isEmpty {
+                    EmptyStateView(
+                        message: "No giveaways available",
+                        systemImageName: "tray.fill",
+                        actionTitle: "Refresh"
+                    ) {
+                        viewModel.refreshConsideringPlatformFilter()
+                    }
+                } else {
+                    giveawayListView(giveaways)
                 }
-            } else {
-                giveawayListView(giveaways)
             }
-            
-        case .failure(let message):
-            ErrorView(message: message) {
-                viewModel.refreshConsideringPlatformFilter()
-            }
-        }
+        )
     }
-
+    
     private func giveawayListView(_ giveaways: [GiveawayEntity]) -> some View {
         List {
             ForEach(giveaways) { giveaway in

@@ -1,5 +1,5 @@
 //
-//  HomeViewState.swift
+//  HomeViewModel.swift
 //  GameGiveaways
 //
 //  Created by mac on 23/01/2025.
@@ -8,16 +8,9 @@
 import SwiftUI
 import Combine
 
-enum HomeViewState {
-    case idle
-    case loading
-    case success([GiveawayEntity])
-    case failure(String)
-}
-
 class HomeViewModel: ObservableObject {
     // MARK: - Published Properties
-    @Published var state: HomeViewState = .idle
+    @Published var state: ViewModelState<[GiveawayEntity]> = .idle
     @Published var user: UserEntity?
     @Published var platforms: [PlatformEntity] = []
     @Published var platformFilter: PlatformFilter? {
