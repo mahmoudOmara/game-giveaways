@@ -7,10 +7,6 @@
 
 import Combine
 
-protocol GetGiveawaysByPlatformsUseCaseProtocol {
-    func execute(platforms: [String]) -> AnyPublisher<[String: [GiveawayEntity]], Error>
-}
-
 class GetGiveawaysByPlatformsUseCase: GetGiveawaysByPlatformsUseCaseProtocol {
     private let getGiveawaysByPlatformUseCase: GetGiveawaysByPlatformUseCaseProtocol
 

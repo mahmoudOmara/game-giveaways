@@ -7,10 +7,6 @@
 
 import Combine
 
-protocol GetMoreGiveawaysUseCaseProtocol {
-    func execute() -> AnyPublisher<MorePlatformsGiveawaysEntity, Error>
-}
-
 class GetMoreGiveawaysUseCase: GetMoreGiveawaysUseCaseProtocol {
     private let platformRepository: PlatformRepositoryProtocol
     private let getGiveawaysByPlatformUseCase: GetGiveawaysByPlatformUseCaseProtocol
@@ -35,7 +31,8 @@ class GetMoreGiveawaysUseCase: GetMoreGiveawaysUseCaseProtocol {
                 .catch { _ in Just([]).setFailureType(to: Error.self) }
             
             let platformsPublisher = self.getGiveawaysByPlatformsUseCase.execute(platforms: remainingPlatforms.map { $0.name })
-            
+                .catch { _ in Just([:]).setFailureType(to: Error.self) }
+
             return Publishers.CombineLatest(epicGamesPublisher, platformsPublisher)
                 .map { epicGamesGiveaways, platformGiveaways in
                     MorePlatformsGiveawaysEntity(
