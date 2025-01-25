@@ -23,8 +23,9 @@ struct GiveawayCard: View {
     let giveaway: GiveawayEntity
     let style: GiveawayCardStyle
     let favoriteButtonPlacement: FavoriteButtonPlacement
+    let showPlatforms: Bool
     let showDiscription: Bool
-    
+
     var body: some View {
         ZStack(alignment: favoriteButtonAlignment) {
             thumbnailLayer
@@ -81,10 +82,11 @@ struct GiveawayCard: View {
                 .font(textSize)
                 .bold()
                 .foregroundColor(.white)
-            
-            Text(giveaway.platforms)
-                .font(.caption)
-                .foregroundColor(.gray)
+            if showPlatforms {
+                Text(giveaway.platforms)
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
             
             Spacer()
 
@@ -136,7 +138,7 @@ struct GiveawayCard: View {
         switch style {
         case .large: return .title
         case .medium: return .headline
-        case .small: return .subheadline
+        case .small: return .caption2
         }
     }
 }
@@ -147,6 +149,7 @@ struct GiveawayCard: View {
         giveaway: HomeFeatureStubs.sampleGiveaways.first!,
         style: .large,
         favoriteButtonPlacement: .topTrailing,
+        showPlatforms: true,
         showDiscription: true)
 }
 
@@ -156,6 +159,7 @@ struct GiveawayCard: View {
         giveaway: HomeFeatureStubs.sampleGiveaways.first!,
         style: .medium,
         favoriteButtonPlacement: .none,
+        showPlatforms: false,
         showDiscription: true)
         .frame(maxWidth: .infinity, minHeight: 200)
 }
@@ -166,6 +170,7 @@ struct GiveawayCard: View {
         giveaway: HomeFeatureStubs.sampleGiveaways.first!,
         style: .small,
         favoriteButtonPlacement: .bottomTrailing,
+        showPlatforms: false,
         showDiscription: false)
         .frame(maxWidth: .infinity, minHeight: 200)
 }
