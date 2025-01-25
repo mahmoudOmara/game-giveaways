@@ -11,7 +11,7 @@ struct StateDrivenView<Content: View, DataType>: View {
     let state: ViewModelState<DataType>
     let loadingMessage: String
     let retryAction: (() -> Void)?
-    let content: (DataType) -> Content
+    @ViewBuilder let content: (DataType) -> Content
 
     var body: some View {
         switch state {
