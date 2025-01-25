@@ -150,6 +150,9 @@ struct HomeView: View {
                 GiveawayCard(giveaway: giveaway)
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 30, trailing: 0))
                     .frame(maxWidth: .infinity, minHeight: 200)
+                    .onTapGesture {
+                        viewModel.navigateToDetail(giveaway: giveaway)
+                    }
             }
             .listRowSeparator(.hidden)
         }

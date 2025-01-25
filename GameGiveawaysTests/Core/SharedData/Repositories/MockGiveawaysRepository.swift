@@ -5,13 +5,36 @@
 //  Created by mac on 23/01/2025.
 //
 
-
 import Foundation
 import Combine
 @testable import GameGiveaways
 
 class MockGiveawaysRepository: GiveawaysRepositoryProtocol {
     var shouldReturnError = false
+    var storedGiveaways: [GiveawayModel] = []
+    
+    private func convertToDomain(_ model: GiveawayModel) -> GiveawayDetailEntity {
+        return GiveawayDetailEntity(
+            id: model.id,
+            imageURL: URL(string: model.image),
+            title: model.title,
+            isActive: model.status.lowercased() == "active",
+            openGiveawayURL: URL(string: model.openGiveaway),
+            worth: model.worth,
+            usersCount: model.users,
+            type: model.type,
+            platforms: model.platforms,
+            endDate: parseDate(from: model.endDate) ?? Date(),
+            description: model.description
+        )
+    }
+    
+    private func parseDate(from dateString: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd" // Adjust format if needed
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        return dateFormatter.date(from: dateString)
+    }
     
     func getAllGiveaways() -> AnyPublisher<[GiveawayEntity], Error> {
         if shouldReturnError {
@@ -53,5 +76,20 @@ class MockGiveawaysRepository: GiveawaysRepositoryProtocol {
         return Just(filteredGiveaways)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
+    }
+    
+    func getDetailedGiveawayByID(_ id: Int) -> AnyPublisher<GiveawayDetailEntity, Error> {
+        if shouldReturnError {
+            return Fail(error: NSError(domain: "TestErrorDomain", code: 404, userInfo: [NSLocalizedDescriptionKey: "Giveaway not found"]))
+                .eraseToAnyPublisher()
+        } else if let giveawayModel = storedGiveaways.first(where: { $0.id == id }) {
+            let giveawayDetailEntity = convertToDomain(giveawayModel)
+            return Just(giveawayDetailEntity)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        } else {
+            return Fail(error: NSError(domain: "TestErrorDomain", code: 404, userInfo: [NSLocalizedDescriptionKey: "Giveaway not found"]))
+                .eraseToAnyPublisher()
+        }
     }
 }

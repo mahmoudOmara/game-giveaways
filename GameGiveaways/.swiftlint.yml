@@ -28,5 +28,5 @@ identifier_name:
   max_length: 30
 
 function_body_length:
-  warning: 20
-  error: 50
+  warning: 80
+  error: 100

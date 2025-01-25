@@ -10,4 +10,5 @@ import Combine
 protocol GiveawaysRepositoryProtocol {
     func getAllGiveaways() -> AnyPublisher<[GiveawayEntity], Error>
     func getGiveawaysByPlatform(platform: String) -> AnyPublisher<[GiveawayEntity], Error>
+    func getDetailedGiveawayByID(_ id: Int) -> AnyPublisher<GiveawayDetailEntity, Error>
 }
