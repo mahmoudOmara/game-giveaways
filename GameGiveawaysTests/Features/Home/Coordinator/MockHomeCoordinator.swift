@@ -15,7 +15,7 @@ class MockHomeCoordinator: HomeCoordinatorProtocol {
         
     }
     
-    func navigateToDetail(giveaway: GiveawayEntity) {
+    func navigateToDetail(giveawayID: Int) {
         
     }
 }

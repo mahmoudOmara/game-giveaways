@@ -95,8 +95,8 @@ class HomeFeatureStubs {
             // No-op for previews
         }
         
-        func navigateToDetail(giveaway: GiveawayEntity) {
-            print("Stub navigation to detail: \(giveaway.title)")
+        func navigateToDetail(giveawayID: Int) {
+            print("Stub navigation to detail for giveaway ID: \(giveawayID)")
         }
     }
 }

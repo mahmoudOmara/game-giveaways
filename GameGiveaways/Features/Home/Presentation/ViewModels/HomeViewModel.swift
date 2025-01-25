@@ -79,7 +79,7 @@ class HomeViewModel: ObservableObject {
     }
     
     func navigateToDetail(giveaway: GiveawayEntity) {
-        coordinator.navigateToDetail(giveaway: giveaway)
+        coordinator.navigateToDetail(giveawayID: giveaway.id)
     }
     
     private func loadGiveaways() {

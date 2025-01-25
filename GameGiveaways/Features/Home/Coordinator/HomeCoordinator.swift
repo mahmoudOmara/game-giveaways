@@ -10,7 +10,7 @@ import SwiftUI
 protocol HomeCoordinatorProtocol {
     var navigationController: UINavigationController { get }
     func start()
-    func navigateToDetail(giveaway: GiveawayEntity)
+    func navigateToDetail(giveawayID: Int)
 }
 
 class HomeCoordinator: HomeCoordinatorProtocol {
@@ -26,8 +26,8 @@ class HomeCoordinator: HomeCoordinatorProtocol {
         navigationController.setViewControllers([hostingController], animated: false)
     }
 
-    func navigateToDetail(giveaway: GiveawayEntity) {
-        let detailsCoordinator = GiveawayDetailsCoordinator(navigationController: navigationController, giveawayID: giveaway.id)
+    func navigateToDetail(giveawayID: Int) {
+        let detailsCoordinator = GiveawayDetailsCoordinator(navigationController: navigationController, giveawayID: giveawayID)
         detailsCoordinator.start()
     }
 }
