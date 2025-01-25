@@ -27,5 +27,7 @@ class HomeCoordinator: HomeCoordinatorProtocol {
     }
 
     func navigateToDetail(giveaway: GiveawayEntity) {
+        let detailsCoordinator = GiveawayDetailsCoordinator(navigationController: navigationController, giveawayID: giveaway.id)
+        detailsCoordinator.start()
     }
 }
