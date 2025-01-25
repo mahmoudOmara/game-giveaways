@@ -8,5 +8,5 @@
 import Combine
 
 protocol PlatformRepositoryProtocol {
-    func getPlatforms() -> AnyPublisher<[PlatformEntity], Never>
+    func getMostPopularPlatforms() -> AnyPublisher<[PlatformEntity], Never>
 }

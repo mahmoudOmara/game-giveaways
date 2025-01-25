@@ -20,9 +20,9 @@ class PlatformRepository: PlatformRepositoryProtocol {
         )
     }
     
-    func getPlatforms() -> AnyPublisher<[PlatformEntity], Never> {
+    func getMostPopularPlatforms() -> AnyPublisher<[PlatformEntity], Never> {
         // No need to keep a weak reference of self as the map function will return immediately
-        dataSource.fetchPlatforms()
+        dataSource.fetchMostPopularPlatforms()
             .map { $0.map { self.convertToDomain($0) } }
             .eraseToAnyPublisher()
     }

@@ -8,5 +8,7 @@
 import Combine
 
 protocol PlatformsLocalDataSourceProtocol {
-    func fetchPlatforms() -> AnyPublisher<[PlatformModel], Never>
+    func fetchMostPopularPlatforms() -> AnyPublisher<[PlatformModel], Never>
+    func fetchRemainingPlatforms() -> AnyPublisher<[PlatformModel], Never>
+    func fetchFeaturedPlatform() -> AnyPublisher<PlatformModel, Never>
 }

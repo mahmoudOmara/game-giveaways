@@ -15,6 +15,6 @@ class GetMostPopularPlatformsUseCase: GetMostPopularPlatformsUseCaseProtocol {
     }
 
     func execute() -> AnyPublisher<[PlatformEntity], Never> {
-        repository.getPlatforms()
+        repository.getMostPopularPlatforms()
     }
 }
