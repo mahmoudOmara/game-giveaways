@@ -164,7 +164,7 @@ struct HomeView: View {
     HomeView(
         viewModel: HomeViewModel(
             getUserProfileUseCase: HomeFeatureStubs.GetUserProfileUseCaseStub(),
-            getPlatformsUseCase: HomeFeatureStubs.GetPlatformsUseCaseStub(),
+            getMostPopularPlatformsUseCase: HomeFeatureStubs.GetMostPopularPlatformsUseCaseStub(),
             getAllGiveawaysUseCase: HomeFeatureStubs.GetAllGiveawaysUseCaseStub(),
             getFilteredGiveawaysUseCase: HomeFeatureStubs.GetGiveawaysByPlatformUseCaseStub(),
             searchGiveawaysUseCase: HomeFeatureStubs.StubSearchGiveawaysUseCase(),

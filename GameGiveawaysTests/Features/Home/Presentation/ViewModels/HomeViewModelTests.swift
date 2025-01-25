@@ -12,7 +12,7 @@ import Combine
 
 class HomeViewModelTests: XCTestCase {
     var mockGetUserProfileUseCase: MockGetUserProfileUseCase!
-    var mockGetPlatformsUseCase: MockGetPlatformsUseCase!
+    var mockGetMostPopularPlatformsUseCase: MockGetMostPopularPlatformsUseCase!
     var mockGetAllGiveawaysUseCase: MockGetAllGiveawaysUseCase!
     var mockGetFilteredGiveawaysUseCase: MockGetGiveawaysByPlatformUseCase!
     var mockSearchGiveawaysUseCase: MockSearchGiveawaysUseCase!
@@ -24,7 +24,7 @@ class HomeViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         mockGetUserProfileUseCase = MockGetUserProfileUseCase()
-        mockGetPlatformsUseCase = MockGetPlatformsUseCase()
+        mockGetMostPopularPlatformsUseCase = MockGetMostPopularPlatformsUseCase()
         mockGetAllGiveawaysUseCase = MockGetAllGiveawaysUseCase()
         mockGetFilteredGiveawaysUseCase = MockGetGiveawaysByPlatformUseCase()
         mockSearchGiveawaysUseCase = MockSearchGiveawaysUseCase()
@@ -32,7 +32,7 @@ class HomeViewModelTests: XCTestCase {
         
         viewModel = HomeViewModel(
             getUserProfileUseCase: mockGetUserProfileUseCase,
-            getPlatformsUseCase: mockGetPlatformsUseCase,
+            getMostPopularPlatformsUseCase: mockGetMostPopularPlatformsUseCase,
             getAllGiveawaysUseCase: mockGetAllGiveawaysUseCase,
             getFilteredGiveawaysUseCase: mockGetFilteredGiveawaysUseCase,
             searchGiveawaysUseCase: mockSearchGiveawaysUseCase,
@@ -43,7 +43,7 @@ class HomeViewModelTests: XCTestCase {
 
     override func tearDown() {
         mockGetUserProfileUseCase = nil
-        mockGetPlatformsUseCase = nil
+        mockGetMostPopularPlatformsUseCase = nil
         mockGetAllGiveawaysUseCase = nil
         mockGetFilteredGiveawaysUseCase = nil
         mockSearchGiveawaysUseCase = nil

@@ -1,5 +1,5 @@
 //
-//  MockGetPlatformsUseCase.swift
+//  MockGetMostPopularPlatformsUseCase.swift
 //  GameGiveaways
 //
 //  Created by mac on 24/01/2025.
@@ -10,7 +10,7 @@ import Foundation
 import Combine
 @testable import GameGiveaways
 
-class MockGetPlatformsUseCase: GetPlatformsUseCaseProtocol {
+class MockGetMostPopularPlatformsUseCase: GetMostPopularPlatformsUseCaseProtocol {
     
     func execute() -> AnyPublisher<[GameGiveaways.PlatformEntity], Never> {
         let platforms: [PlatformEntity] = [

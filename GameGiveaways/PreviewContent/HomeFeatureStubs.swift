@@ -47,7 +47,7 @@ class HomeFeatureStubs {
         }
     }
     
-    class GetPlatformsUseCaseStub: GetPlatformsUseCaseProtocol {
+    class GetMostPopularPlatformsUseCaseStub: GetMostPopularPlatformsUseCaseProtocol {
         func execute() -> AnyPublisher<[PlatformEntity], Never> {
             Just(HomeFeatureStubs.samplePlatforms)
                 .setFailureType(to: Never.self)

@@ -17,14 +17,14 @@ struct HomeViewFactory {
         let giveawaysRepository = SharedFactory.getSharedGiveawaysRepository()
         
         let getUserProfileUseCase = GetUserProfileUseCase(repository: userRepository)
-        let getPlatformsUseCase = GetPlatformsUseCase(repository: platformRepository)
+        let getMostPopularPlatformsUseCase = GetMostPopularPlatformsUseCase(repository: platformRepository)
         let getAllGiveawaysUseCase = GetAllGiveawaysUseCase(repository: giveawaysRepository)
         let getGiveawaysByPlatformUseCase = GetGiveawaysByPlatformUseCase(repository: giveawaysRepository)
         let searchGiveawaysUseCase = SearchGiveawaysUseCase()
         
         let viewModel = HomeViewModel(
             getUserProfileUseCase: getUserProfileUseCase,
-            getPlatformsUseCase: getPlatformsUseCase,
+            getMostPopularPlatformsUseCase: getMostPopularPlatformsUseCase,
             getAllGiveawaysUseCase: getAllGiveawaysUseCase,
             getFilteredGiveawaysUseCase: getGiveawaysByPlatformUseCase,
             searchGiveawaysUseCase: searchGiveawaysUseCase,
