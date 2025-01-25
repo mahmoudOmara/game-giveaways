@@ -144,7 +144,11 @@ struct HomeView: View {
     private func giveawayListView(_ giveaways: [GiveawayEntity]) -> some View {
         List {
             ForEach(giveaways) { giveaway in
-                GiveawayCard(giveaway: giveaway)
+                GiveawayCard(
+                    giveaway: giveaway,
+                    style: .large,
+                    favoriteButtonPlacement: .topTrailing,
+                    showDiscription: true)
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 30, trailing: 0))
                     .frame(maxWidth: .infinity, minHeight: 200)
                     .onTapGesture {
