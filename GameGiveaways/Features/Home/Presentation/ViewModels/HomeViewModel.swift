@@ -85,6 +85,10 @@ class HomeViewModel: ObservableObject {
         }
     }
     
+    func navigateToDetail(giveaway: GiveawayEntity) {
+        coordinator.navigateToDetail(giveaway: giveaway)
+    }
+    
     private func loadGiveaways() {
         state = .loading
         getAllGiveawaysUseCase.execute()
