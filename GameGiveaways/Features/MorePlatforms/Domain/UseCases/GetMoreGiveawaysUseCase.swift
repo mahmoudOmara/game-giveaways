@@ -12,32 +12,38 @@ protocol GetMoreGiveawaysUseCaseProtocol {
 }
 
 class GetMoreGiveawaysUseCase: GetMoreGiveawaysUseCaseProtocol {
+    private let platformRepository: PlatformRepositoryProtocol
     private let getGiveawaysByPlatformUseCase: GetGiveawaysByPlatformUseCaseProtocol
     private let getGiveawaysByPlatformsUseCase: GetGiveawaysByPlatformsUseCaseProtocol
     
-    private let platforms = ["PS4", "PS5", "Xbox One"]
-    private let epicGamesPlatform = "Epic Games"
-    
     init(
+        platformRepository: PlatformRepositoryProtocol,
         getGiveawaysByPlatformUseCase: GetGiveawaysByPlatformUseCaseProtocol,
         getGiveawaysByPlatformsUseCase: GetGiveawaysByPlatformsUseCaseProtocol) {
+            self.platformRepository = platformRepository
             self.getGiveawaysByPlatformUseCase = getGiveawaysByPlatformUseCase
             self.getGiveawaysByPlatformsUseCase = getGiveawaysByPlatformsUseCase
         }
     
     func execute() -> AnyPublisher<MorePlatformsGiveawaysEntity, Error> {
-        let epicGamesPublisher = getGiveawaysByPlatformUseCase.execute(platform: epicGamesPlatform)
-            .catch { _ in Just([]).setFailureType(to: Error.self) }
-        
-        let platformsPublisher = getGiveawaysByPlatformsUseCase.execute(platforms: platforms)
-        
-        return Publishers.CombineLatest(epicGamesPublisher, platformsPublisher)
-            .map { epicGamesGiveaways, platformGiveaways in
-                MorePlatformsGiveawaysEntity(
-                    epicGames: epicGamesGiveaways,
-                    platformGiveaways: platformGiveaways
-                )
-            }
-            .eraseToAnyPublisher()
+        return Publishers.CombineLatest(
+            platformRepository.getFeaturedPlatform(),
+            platformRepository.getRemainingPlatforms()
+        )
+        .flatMap { featuredPlatform, remainingPlatforms in
+            let epicGamesPublisher = self.getGiveawaysByPlatformUseCase.execute(platform: featuredPlatform.name)
+                .catch { _ in Just([]).setFailureType(to: Error.self) }
+            
+            let platformsPublisher = self.getGiveawaysByPlatformsUseCase.execute(platforms: remainingPlatforms.map { $0.name })
+            
+            return Publishers.CombineLatest(epicGamesPublisher, platformsPublisher)
+                .map { epicGamesGiveaways, platformGiveaways in
+                    MorePlatformsGiveawaysEntity(
+                        epicGames: epicGamesGiveaways,
+                        platformGiveaways: platformGiveaways
+                    )
+                }
+        }
+        .eraseToAnyPublisher()
     }
 }

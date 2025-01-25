@@ -26,4 +26,18 @@ class PlatformRepository: PlatformRepositoryProtocol {
             .map { $0.map { self.convertToDomain($0) } }
             .eraseToAnyPublisher()
     }
+    
+    func getRemainingPlatforms() -> AnyPublisher<[PlatformEntity], Never> {
+        // No need to keep a weak reference of self as the map function will return immediately
+        dataSource.fetchRemainingPlatforms()
+            .map { $0.map { self.convertToDomain($0) } }
+            .eraseToAnyPublisher()
+    }
+    
+    func getFeaturedPlatform() -> AnyPublisher<PlatformEntity, Never> {
+        // No need to keep a weak reference of self as the map function will return immediately
+        dataSource.fetchFeaturedPlatform()
+            .map { self.convertToDomain($0) }
+            .eraseToAnyPublisher()
+    }
 }
