@@ -42,7 +42,6 @@ struct GiveawayDetailsView: View {
     }
 
     // MARK: - Header Section
-    // swiftlint:disable:next function_body_length
     private func headerView(_ details: GiveawayDetailEntity) -> some View {
         ZStack(alignment: .topLeading) {
             AsyncImage(url: details.imageURL) { phase in
