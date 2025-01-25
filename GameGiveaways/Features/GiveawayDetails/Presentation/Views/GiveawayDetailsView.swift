@@ -75,7 +75,7 @@ struct GiveawayDetailsView: View {
             
             HStack {
                 Button(
-                    action: { /* Handle back navigation */ },
+                    action: viewModel.navigateBackToHome,
                     label: {
                         Image(systemName: "chevron.left")
                             .foregroundColor(.white)
@@ -181,7 +181,8 @@ struct GiveawayDetailsView: View {
     GiveawayDetailsView(
         viewModel: GiveawayDetailsViewModel(
             giveawayID: id,
-            getGiveawayDetailsUseCase: GiveawayDetailsFeatureStubs.GiveawayDetailsUseCaseStub(idStub: id)
+            getGiveawayDetailsUseCase: GiveawayDetailsFeatureStubs.GiveawayDetailsUseCaseStub(idStub: id),
+            coordinator: GiveawayDetailsFeatureStubs.StubGiveawayDetailsCoordinator()
         )
     )
 }

@@ -13,7 +13,10 @@ struct GiveawayDetailsViewFactory {
 
         let getGiveawayDetailsUseCase = GetGiveawayDetailsUseCase(repository: giveawaysRepository)
         
-        let viewModel = GiveawayDetailsViewModel(giveawayID: giveawayID, getGiveawayDetailsUseCase: getGiveawayDetailsUseCase)
+        let viewModel = GiveawayDetailsViewModel(
+            giveawayID: giveawayID,
+            getGiveawayDetailsUseCase: getGiveawayDetailsUseCase,
+            coordinator: coordinator)
         
         let view = GiveawayDetailsView(viewModel: viewModel)
         return view

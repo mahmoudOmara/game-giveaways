@@ -8,6 +8,7 @@
 #if DEBUG
 import Foundation
 import Combine
+import SwiftUI
 
 class GiveawayDetailsFeatureStubs {
     
@@ -47,6 +48,18 @@ class GiveawayDetailsFeatureStubs {
                     userInfo: [NSLocalizedDescriptionKey: "Giveaway not found"]))
                     .eraseToAnyPublisher()
             }
+        }
+    }
+    
+    class StubGiveawayDetailsCoordinator: GiveawayDetailsCoordinatorProtocol {
+        var navigationController: UINavigationController = UINavigationController()
+        
+        func start() {
+
+        }
+        
+        func back() {
+            
         }
     }
 }

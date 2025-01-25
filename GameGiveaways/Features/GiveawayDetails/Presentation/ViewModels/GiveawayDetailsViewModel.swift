@@ -15,13 +15,17 @@ class GiveawayDetailsViewModel: ObservableObject {
     // MARK: - Dependencies
     private let getGiveawayDetailsUseCase: GetGiveawayDetailsUseCaseProtocol
     private let giveawayID: Int
-    
+    private let coordinator: GiveawayDetailsCoordinatorProtocol
+
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Initializer
-    init(giveawayID: Int, getGiveawayDetailsUseCase: GetGiveawayDetailsUseCaseProtocol) {
+    init(giveawayID: Int,
+         getGiveawayDetailsUseCase: GetGiveawayDetailsUseCaseProtocol,
+         coordinator: GiveawayDetailsCoordinatorProtocol) {
         self.giveawayID = giveawayID
         self.getGiveawayDetailsUseCase = getGiveawayDetailsUseCase
+        self.coordinator = coordinator
     }
 
     // MARK: - Public Methods
@@ -41,5 +45,9 @@ class GiveawayDetailsViewModel: ObservableObject {
                 self?.state = .success(details)
             })
             .store(in: &cancellables)
+    }
+    
+    func navigateBackToHome() {
+        coordinator.back()
     }
 }
