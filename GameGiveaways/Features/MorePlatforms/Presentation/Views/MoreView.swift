@@ -38,7 +38,7 @@ struct MoreView: View {
                     .bold()
                     .padding(.horizontal)
                 
-                RotatingCarouselView(giveaways: featuredGiveaways)
+                RotatingCarouselView(viewModel: viewModel, giveaways: featuredGiveaways)
                     .frame(height: 180)
                     .frame(maxWidth: .infinity)
                 
@@ -71,6 +71,9 @@ struct MoreView: View {
                         favoriteButtonPlacement: .bottomTrailing,
                         showPlatforms: false,
                         showDiscription: false)
+                    .onTapGesture {
+                        viewModel.navigateToDetail(giveaway: giveaway)
+                    }
                 }
             }
         }

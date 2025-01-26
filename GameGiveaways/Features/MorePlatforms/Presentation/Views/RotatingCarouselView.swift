@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct RotatingCarouselView: View {
+    @ObservedObject private var viewModel: MoreViewModel
+
     let giveaways: [GiveawayEntity]
     @State private var currentIndex: Int = 0
     @State private var dragOffset: CGFloat = 0
     private let cardWidth: CGFloat = 300
     private let spacing: CGFloat = 40
+    
+    init(viewModel: MoreViewModel, giveaways: [GiveawayEntity]) {
+        self.viewModel = viewModel
+        self.giveaways = giveaways
+    }
     
     var body: some View {
         VStack(spacing: 10) {
@@ -51,6 +58,9 @@ struct RotatingCarouselView: View {
                             }
                     )
                     .animation(.easeInOut, value: dragOffset)
+                    .onTapGesture {
+                        viewModel.navigateToDetail(giveaway: giveaway)
+                    }
             }
         }
     }
@@ -133,5 +143,10 @@ struct RotatingCarouselView: View {
 }
 
 #Preview {
-    RotatingCarouselView(giveaways: MoreFeatureStubs.epicGamesGiveaways)
+    RotatingCarouselView(
+        viewModel: MoreViewModel(
+            getMoreGiveawaysUseCase: MoreFeatureStubs.StubGetMoreGiveawaysUseCase(),
+            coordinator: MoreFeatureStubs.StubMorePlatformsCoordinator()
+        ),
+        giveaways: MoreFeatureStubs.epicGamesGiveaways)
 }

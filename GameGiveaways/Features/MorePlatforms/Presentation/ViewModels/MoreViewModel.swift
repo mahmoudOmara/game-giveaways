@@ -42,4 +42,8 @@ class MoreViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
+    
+    func navigateToDetail(giveaway: GiveawayEntity) {
+        coordinator.navigateToDetail(giveawayID: giveaway.id)
+    }
 }
