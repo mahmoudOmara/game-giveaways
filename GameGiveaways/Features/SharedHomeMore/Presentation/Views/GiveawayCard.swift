@@ -118,19 +118,19 @@ struct GiveawayCard: View {
 
     // MARK: - Favorite Button
     private var favoriteButton: some View {
-        Button(
-            action: {
-                UIImpactFeedbackGenerator(style: .light).impactOccurred()
-                viewModel.toggleFavorite()
-            },
-            label: {
-                Image(systemName: viewModel.isFavorited ? "heart.fill" : "heart")
-                    .foregroundColor(.white)
-                    .padding(8)
-                    .background(Color.black.opacity(0.5))
-                    .clipShape(Circle())
-            })
-        .padding()
+        
+        Image(systemName: viewModel.isFavorited ? "heart.fill" : "heart")
+            .foregroundColor(.white)
+            .padding(8)
+            .background(Color.black.opacity(0.5))
+            .clipShape(Circle())
+            .padding()
+            .highPriorityGesture(
+                TapGesture().onEnded({
+                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    viewModel.toggleFavorite()
+                })
+            )
     }
 
     // MARK: - Computed Properties
