@@ -14,9 +14,9 @@ class MockGetMostPopularPlatformsUseCase: GetMostPopularPlatformsUseCaseProtocol
     
     func execute() -> AnyPublisher<[GameGiveaways.PlatformEntity], Never> {
         let platforms: [PlatformEntity] = [
-            PlatformEntity(name: "PC"),
-            PlatformEntity(name: "PlayStation"),
-            PlatformEntity(name: "Xbox")
+            PlatformEntity(displayName: "PC", name: "PC"),
+            PlatformEntity(displayName: "PlayStation", name: "PlayStation"),
+            PlatformEntity(displayName: "Xbox", name: "Xbox")
         ]
         return Just(platforms)
             .setFailureType(to: Never.self)

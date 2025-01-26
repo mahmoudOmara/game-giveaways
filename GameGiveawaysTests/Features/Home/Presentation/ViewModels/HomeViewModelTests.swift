@@ -107,7 +107,7 @@ class HomeViewModelTests: XCTestCase {
                 .store(in: &cancellables)
 
             // Trigger fetching platform-specific giveaways by setting platformFilter
-            viewModel.platformFilter = .specific(PlatformEntity(id: "1", name: "PC"))
+        viewModel.platformFilter = .specific(PlatformEntity(id: "1", displayName: "PC", name: "PC"))
             
             wait(for: [expectation], timeout: 5.0)
         }
@@ -129,7 +129,7 @@ class HomeViewModelTests: XCTestCase {
                 }
                 .store(in: &cancellables)
 
-            viewModel.platformFilter = .specific(PlatformEntity(id: "1", name: "PC"))
+        viewModel.platformFilter = .specific(PlatformEntity(id: "1", displayName: "PC", name: "PC"))
             
             wait(for: [expectation], timeout: 5.0)
         }
@@ -195,7 +195,7 @@ class HomeViewModelTests: XCTestCase {
             }
             .store(in: &cancellables)
 
-        viewModel.platformFilter = .specific(PlatformEntity(id: "1", name: "PC"))
+        viewModel.platformFilter = .specific(PlatformEntity(id: "1", displayName: "PC", name: "PC"))
         wait(for: [expectation], timeout: 5.0)
     }
     
@@ -216,7 +216,7 @@ class HomeViewModelTests: XCTestCase {
             }
             .store(in: &cancellables)
 
-        viewModel.platformFilter = .specific(PlatformEntity(id: "1", name: "PC"))
+        viewModel.platformFilter = .specific(PlatformEntity(id: "1", displayName: "PC", name: "PC"))
         wait(for: [expectation], timeout: 5.0)
     }
     

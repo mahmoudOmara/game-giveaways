@@ -10,17 +10,17 @@ import Combine
 
 class MockPlatformRepository: PlatformRepositoryProtocol {
     var mockMostPopularPlatforms: [PlatformEntity] = [
-        PlatformEntity(name: "PS4"),
-        PlatformEntity(name: "PS5"),
-        PlatformEntity(name: "Xbox One")
+        PlatformEntity(displayName: "PS4", name: "PS4"),
+        PlatformEntity(displayName: "PS5", name: "PS5"),
+        PlatformEntity(displayName: "Xbox One", name: "Xbox One")
     ]
     
     var mockRemainingPlatforms: [PlatformEntity] = [
-        PlatformEntity(name: "Nintendo Switch"),
-        PlatformEntity(name: "PC")
+        PlatformEntity(displayName: "Nintendo Switch", name: "Nintendo Switch"),
+        PlatformEntity(displayName: "PC", name: "PC")
     ]
     
-    var mockFeaturedPlatform: PlatformEntity = PlatformEntity(name: "Epic Games")
+    var mockFeaturedPlatform: PlatformEntity = PlatformEntity(displayName: "Epic Games", name: "Epic Games")
     
     var shouldReturnError = false
     
