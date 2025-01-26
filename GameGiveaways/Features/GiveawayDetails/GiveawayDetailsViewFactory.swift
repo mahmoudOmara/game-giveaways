@@ -30,4 +30,8 @@ struct GiveawayDetailsViewFactory {
         let view = GiveawayDetailsView(viewModel: viewModel)
         return view
     }
+    
+    static func createGiveawayWebView(url: URL) -> some View {
+        GiveawayWebView(url: url)
+    }
 }

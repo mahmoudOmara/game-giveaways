@@ -85,4 +85,11 @@ class GiveawayDetailsViewModel: ObservableObject {
     private func removeFavorite() {
         removeFavoriteUseCase.execute(giveawayID: giveawayID)
     }
+    
+    func openGiveaway() {
+        guard
+            case let .success(giveaway) = state,
+            let url = giveaway.openGiveawayURL else { return }
+        coordinator.navigateToGiveawayWebView(with: url)
+    }
 }

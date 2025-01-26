@@ -112,7 +112,9 @@ struct GiveawayDetailsView: View {
                     }
                     Spacer()
                     Button(
-                        action: {},
+                        action: {
+                            viewModel.openGiveaway()
+                        },
                         label: {
                             Text("Get it")
                                 .foregroundColor(.primary)
