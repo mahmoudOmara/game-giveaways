@@ -27,6 +27,9 @@ class HomeViewModel: ObservableObject {
     private let getMostPopularPlatformsUseCase: GetMostPopularPlatformsUseCaseProtocol
     private let getAllGiveawaysUseCase: GetAllGiveawaysUseCaseProtocol
     private let getFilteredGiveawaysUseCase: GetGiveawaysByPlatformUseCaseProtocol
+    let addFavoriteUseCase: AddFavoriteUseCaseProtocol
+    let removeFavoriteUseCase: RemoveFavoriteUseCaseProtocol
+    let isFavoriteUseCase: IsFavoriteUseCaseProtocol
     private let coordinator: HomeCoordinatorProtocol
 
     private var cancellables = Set<AnyCancellable>()
@@ -38,6 +41,9 @@ class HomeViewModel: ObservableObject {
         getAllGiveawaysUseCase: GetAllGiveawaysUseCaseProtocol,
         getFilteredGiveawaysUseCase: GetGiveawaysByPlatformUseCaseProtocol,
         searchGiveawaysUseCase: SearchGiveawaysUseCaseProtocol,
+        addFavoriteUseCase: AddFavoriteUseCaseProtocol,
+        removeFavoriteUseCase: RemoveFavoriteUseCaseProtocol,
+        isFavoriteUseCase: IsFavoriteUseCaseProtocol,
         coordinator: HomeCoordinatorProtocol
     ) {
         self.getUserProfileUseCase = getUserProfileUseCase
@@ -45,6 +51,9 @@ class HomeViewModel: ObservableObject {
         self.getAllGiveawaysUseCase = getAllGiveawaysUseCase
         self.getFilteredGiveawaysUseCase = getFilteredGiveawaysUseCase
         self.searchGiveawaysUseCase = searchGiveawaysUseCase
+        self.addFavoriteUseCase = addFavoriteUseCase
+        self.removeFavoriteUseCase = removeFavoriteUseCase
+        self.isFavoriteUseCase = isFavoriteUseCase
         self.coordinator = coordinator
         
         setupSearchBinding()

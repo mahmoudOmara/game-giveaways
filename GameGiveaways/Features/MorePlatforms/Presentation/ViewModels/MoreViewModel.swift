@@ -13,14 +13,23 @@ class MoreViewModel: ObservableObject {
 
     // MARK: - Dependencies
     private let getMoreGiveawaysUseCase: GetMoreGiveawaysUseCaseProtocol
+    let addFavoriteUseCase: AddFavoriteUseCaseProtocol
+    let removeFavoriteUseCase: RemoveFavoriteUseCaseProtocol
+    let isFavoriteUseCase: IsFavoriteUseCaseProtocol
     private let coordinator: MorePlatformsCoordinatorProtocol
 
     private var cancellables = Set<AnyCancellable>()
 
     init(
         getMoreGiveawaysUseCase: GetMoreGiveawaysUseCaseProtocol,
+        addFavoriteUseCase: AddFavoriteUseCaseProtocol,
+        removeFavoriteUseCase: RemoveFavoriteUseCaseProtocol,
+        isFavoriteUseCase: IsFavoriteUseCaseProtocol,
         coordinator: MorePlatformsCoordinatorProtocol) {
             self.getMoreGiveawaysUseCase = getMoreGiveawaysUseCase
+            self.addFavoriteUseCase = addFavoriteUseCase
+            self.removeFavoriteUseCase = removeFavoriteUseCase
+            self.isFavoriteUseCase = isFavoriteUseCase
             self.coordinator = coordinator
         }
 

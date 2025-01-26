@@ -20,11 +20,26 @@ struct GiveawayCard: View {
         case none
     }
     
-    let giveaway: GiveawayEntity
+    // MARK: - Dependencies
+    @StateObject private var viewModel: GiveawayCardViewModel
     let style: GiveawayCardStyle
     let favoriteButtonPlacement: FavoriteButtonPlacement
     let showPlatforms: Bool
-    let showDiscription: Bool
+    let showDescription: Bool
+    
+    init(
+        viewModel: GiveawayCardViewModel,
+        style: GiveawayCardStyle,
+        favoriteButtonPlacement: FavoriteButtonPlacement,
+        showPlatforms: Bool,
+        showDescription: Bool
+    ) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+        self.style = style
+        self.favoriteButtonPlacement = favoriteButtonPlacement
+        self.showPlatforms = showPlatforms
+        self.showDescription = showDescription
+    }
 
     var body: some View {
         ZStack(alignment: favoriteButtonAlignment) {
@@ -43,7 +58,7 @@ struct GiveawayCard: View {
 
     // MARK: - Thumbnail Layer
     private var thumbnailLayer: some View {
-        AsyncImage(url: giveaway.thumbnailURL) { phase in
+        AsyncImage(url: viewModel.giveaway.thumbnailURL) { phase in
             switch phase {
             case .success(let image):
                 image.resizable()
@@ -78,20 +93,20 @@ struct GiveawayCard: View {
     // MARK: - Text Content
     private var textContent: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(giveaway.title)
+            Text(viewModel.giveaway.title)
                 .font(textSize)
                 .bold()
                 .foregroundColor(.white)
             if showPlatforms {
-                Text(giveaway.platforms)
+                Text(viewModel.giveaway.platforms)
                     .font(.caption)
                     .foregroundColor(.gray)
             }
             
             Spacer()
 
-            if showDiscription {
-                Text(giveaway.description)
+            if showDescription {
+                Text(viewModel.giveaway.description)
                     .font(.body)
                     .foregroundColor(.white.opacity(0.8))
                     .lineLimit(4)
@@ -106,9 +121,10 @@ struct GiveawayCard: View {
         Button(
             action: {
                 UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                viewModel.toggleFavorite()
             },
             label: {
-                Image(systemName: "heart.fill")
+                Image(systemName: viewModel.isFavorited ? "heart.fill" : "heart")
                     .foregroundColor(.white)
                     .padding(8)
                     .background(Color.black.opacity(0.5))
@@ -145,32 +161,42 @@ struct GiveawayCard: View {
 
 #Preview {
     GiveawayCard(
-        // swiftlint:disable:next force_unwrapping
-        giveaway: HomeFeatureStubs.sampleGiveaways.first!,
+        viewModel: GiveawayCardViewModel(
+            // swiftlint:disable:next force_unwrapping
+            giveaway: HomeFeatureStubs.sampleGiveaways.first!,
+            addFavoriteUseCase: FavoriteUseCaseStubs.AddFavoriteUseCaseStub(),
+            removeFavoriteUseCase: FavoriteUseCaseStubs.RemoveFavoriteUseCaseStub(),
+            isFavoriteUseCase: FavoriteUseCaseStubs.IsFavoriteUseCaseStub()),
         style: .large,
         favoriteButtonPlacement: .topTrailing,
         showPlatforms: true,
-        showDiscription: true)
+        showDescription: true)
 }
 
 #Preview {
     GiveawayCard(
-        // swiftlint:disable:next force_unwrapping
-        giveaway: HomeFeatureStubs.sampleGiveaways.first!,
+        viewModel: GiveawayCardViewModel(
+            // swiftlint:disable:next force_unwrapping
+            giveaway: HomeFeatureStubs.sampleGiveaways.first!,
+            addFavoriteUseCase: FavoriteUseCaseStubs.AddFavoriteUseCaseStub(),
+            removeFavoriteUseCase: FavoriteUseCaseStubs.RemoveFavoriteUseCaseStub(),
+            isFavoriteUseCase: FavoriteUseCaseStubs.IsFavoriteUseCaseStub()),
         style: .medium,
         favoriteButtonPlacement: .none,
         showPlatforms: false,
-        showDiscription: true)
-        .frame(maxWidth: .infinity, minHeight: 200)
+        showDescription: true)
 }
 
 #Preview {
     GiveawayCard(
-        // swiftlint:disable:next force_unwrapping
-        giveaway: HomeFeatureStubs.sampleGiveaways.first!,
+        viewModel: GiveawayCardViewModel(
+            // swiftlint:disable:next force_unwrapping
+            giveaway: HomeFeatureStubs.sampleGiveaways.first!,
+            addFavoriteUseCase: FavoriteUseCaseStubs.AddFavoriteUseCaseStub(),
+            removeFavoriteUseCase: FavoriteUseCaseStubs.RemoveFavoriteUseCaseStub(),
+            isFavoriteUseCase: FavoriteUseCaseStubs.IsFavoriteUseCaseStub()),
         style: .small,
         favoriteButtonPlacement: .bottomTrailing,
         showPlatforms: false,
-        showDiscription: false)
-        .frame(maxWidth: .infinity, minHeight: 200)
+        showDescription: false)
 }
