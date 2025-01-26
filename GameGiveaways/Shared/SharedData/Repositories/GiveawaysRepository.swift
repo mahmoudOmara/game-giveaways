@@ -38,17 +38,9 @@ class GiveawaysRepository: GiveawaysRepositoryProtocol {
             usersCount: model.users,
             type: model.type,
             platforms: model.platforms,
-            endDate: parseDate(from: model.endDate),
+            endDate: Date.parse(from: model.endDate),
             description: model.description
         )
-    }
-    
-    // Helper function to parse the date
-    private func parseDate(from dateString: String) -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd H:mm:ss"
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        return dateFormatter.date(from: dateString)
     }
 
     func getAllGiveaways() -> AnyPublisher<[GiveawayEntity], Error> {
