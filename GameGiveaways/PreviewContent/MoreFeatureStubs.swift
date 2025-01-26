@@ -120,6 +120,10 @@ class MoreFeatureStubs {
         func navigateToDetail(giveawayID: Int) {
             
         }
+        
+        func navigateBackToHome() {
+            
+        }
     }
 }
 #endif
