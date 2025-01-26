@@ -173,11 +173,11 @@ struct HomeView: View {
                     favoriteButtonPlacement: .topTrailing,
                     showPlatforms: true,
                     showDescription: true)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 30, trailing: 0))
-                    .frame(maxWidth: .infinity, minHeight: 200)
-                    .onTapGesture {
-                        viewModel.navigateToDetail(giveaway: giveaway)
-                    }
+                .frame(maxWidth: .infinity)
+                .listRowBackground(Color.clear)
+                .onTapGesture {
+                    viewModel.navigateToDetail(giveaway: giveaway)
+                }
             }
             .listRowSeparator(.hidden)
         }
