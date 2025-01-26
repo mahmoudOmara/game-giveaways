@@ -18,6 +18,7 @@ GameGiveaways is a SwiftUI-based iOS application that allows users to browse and
 - [📦 Dependency Injection](#-dependency-injection)
 - [🔧 Setup Instructions](#-setup-instructions)
 - [🚀 Future Enhancements](#-future-enhancements)
+
 ## 📂 Project Structure
 
 The project is structured following Clean Architecture, dividing responsibilities into distinct layers:
