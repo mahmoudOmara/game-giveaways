@@ -15,6 +15,14 @@ struct RotatingCarouselView: View {
     private let spacing: CGFloat = 40
     
     var body: some View {
+        VStack(spacing: 10) {
+            carouselStack
+            indexIndicator
+        }
+    }
+    
+    // MARK: - Carousel Stack
+    private var carouselStack: some View {
         ZStack {
             ForEach(Array(giveaways.enumerated()), id: \.element.id) { index, giveaway in
                 carouselCard(giveaway: giveaway, index: index)
@@ -46,6 +54,20 @@ struct RotatingCarouselView: View {
             }
         }
     }
+    
+    // MARK: - Index Indicator
+    private var indexIndicator: some View {
+        HStack(spacing: 8) {
+            ForEach(0..<giveaways.count, id: \.self) { index in
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(index == currentIndex ? Color.red : Color.gray.opacity(0.5))
+                    .frame(width: index == currentIndex ? 20 : 8, height: 8)
+                    .transition(.scale)
+                    .animation(.spring(), value: currentIndex)
+            }
+        }
+    }
+    
     // MARK: - Card View
     private func carouselCard(giveaway: GiveawayEntity, index: Int) -> some View {
         GiveawayCard(
