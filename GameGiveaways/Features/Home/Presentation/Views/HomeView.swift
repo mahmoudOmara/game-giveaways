@@ -163,11 +163,16 @@ struct HomeView: View {
         List {
             ForEach(giveaways) { giveaway in
                 GiveawayCard(
-                    giveaway: giveaway,
+                    viewModel: GiveawayCardViewModel(
+                        giveaway: giveaway,
+                        addFavoriteUseCase: viewModel.addFavoriteUseCase,
+                        removeFavoriteUseCase: viewModel.removeFavoriteUseCase,
+                        isFavoriteUseCase: viewModel.isFavoriteUseCase
+                    ),
                     style: .large,
                     favoriteButtonPlacement: .topTrailing,
                     showPlatforms: true,
-                    showDiscription: true)
+                    showDescription: true)
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 30, trailing: 0))
                     .frame(maxWidth: .infinity, minHeight: 200)
                     .onTapGesture {

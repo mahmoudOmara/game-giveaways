@@ -27,9 +27,9 @@ class HomeViewModel: ObservableObject {
     private let getMostPopularPlatformsUseCase: GetMostPopularPlatformsUseCaseProtocol
     private let getAllGiveawaysUseCase: GetAllGiveawaysUseCaseProtocol
     private let getFilteredGiveawaysUseCase: GetGiveawaysByPlatformUseCaseProtocol
-    private let addFavoriteUseCase: AddFavoriteUseCaseProtocol
-    private let removeFavoriteUseCase: RemoveFavoriteUseCaseProtocol
-    private let isFavoriteUseCase: IsFavoriteUseCaseProtocol
+    let addFavoriteUseCase: AddFavoriteUseCaseProtocol
+    let removeFavoriteUseCase: RemoveFavoriteUseCaseProtocol
+    let isFavoriteUseCase: IsFavoriteUseCaseProtocol
     private let coordinator: HomeCoordinatorProtocol
 
     private var cancellables = Set<AnyCancellable>()
@@ -76,18 +76,6 @@ class HomeViewModel: ObservableObject {
                 self?.platforms = platforms
             }
             .store(in: &cancellables)
-    }
-    
-    func toggleFavorite(_ id: Int) {
-        if isFavoriteUseCase.execute(giveawayID: id) {
-            removeFavoriteUseCase.execute(giveawayID: id)
-        } else {
-            addFavoriteUseCase.execute(giveawayID: id)
-        }
-    }
-    
-    func isFavorite(_ id: Int) -> Bool {
-        isFavoriteUseCase.execute(giveawayID: id)
     }
     
     func refreshConsideringPlatformFilter() {

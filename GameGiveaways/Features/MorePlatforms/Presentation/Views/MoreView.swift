@@ -77,11 +77,16 @@ struct MoreView: View {
             LazyHStack(spacing: 10) {
                 ForEach(giveaways) { giveaway in
                     GiveawayCard(
-                        giveaway: giveaway,
+                        viewModel: GiveawayCardViewModel(
+                            giveaway: giveaway,
+                            addFavoriteUseCase: viewModel.addFavoriteUseCase,
+                            removeFavoriteUseCase: viewModel.removeFavoriteUseCase,
+                            isFavoriteUseCase: viewModel.isFavoriteUseCase
+                        ),
                         style: .small,
                         favoriteButtonPlacement: .bottomTrailing,
                         showPlatforms: false,
-                        showDiscription: false)
+                        showDescription: false)
                     .onTapGesture {
                         viewModel.navigateToDetail(giveaway: giveaway)
                     }
@@ -95,6 +100,9 @@ struct MoreView: View {
     MoreView(
         viewModel: MoreViewModel(
             getMoreGiveawaysUseCase: MoreFeatureStubs.StubGetMoreGiveawaysUseCase(),
+            addFavoriteUseCase: FavoriteUseCaseStubs.AddFavoriteUseCaseStub(),
+            removeFavoriteUseCase: FavoriteUseCaseStubs.RemoveFavoriteUseCaseStub(),
+            isFavoriteUseCase: FavoriteUseCaseStubs.IsFavoriteUseCaseStub(),
             coordinator: MoreFeatureStubs.StubMorePlatformsCoordinator()
         )
     )

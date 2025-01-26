@@ -81,11 +81,16 @@ struct RotatingCarouselView: View {
     // MARK: - Card View
     private func carouselCard(giveaway: GiveawayEntity, index: Int) -> some View {
         GiveawayCard(
-            giveaway: giveaway,
+            viewModel: GiveawayCardViewModel(
+                giveaway: giveaway,
+                addFavoriteUseCase: viewModel.addFavoriteUseCase,
+                removeFavoriteUseCase: viewModel.removeFavoriteUseCase,
+                isFavoriteUseCase: viewModel.isFavoriteUseCase
+            ),
             style: .medium,
             favoriteButtonPlacement: .none,
             showPlatforms: false,
-            showDiscription: true
+            showDescription: true
         )
     }
     
@@ -146,6 +151,9 @@ struct RotatingCarouselView: View {
     RotatingCarouselView(
         viewModel: MoreViewModel(
             getMoreGiveawaysUseCase: MoreFeatureStubs.StubGetMoreGiveawaysUseCase(),
+            addFavoriteUseCase: FavoriteUseCaseStubs.AddFavoriteUseCaseStub(),
+            removeFavoriteUseCase: FavoriteUseCaseStubs.RemoveFavoriteUseCaseStub(),
+            isFavoriteUseCase: FavoriteUseCaseStubs.IsFavoriteUseCaseStub(),
             coordinator: MoreFeatureStubs.StubMorePlatformsCoordinator()
         ),
         giveaways: MoreFeatureStubs.epicGamesGiveaways)
