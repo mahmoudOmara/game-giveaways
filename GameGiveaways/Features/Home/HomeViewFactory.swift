@@ -41,4 +41,12 @@ struct HomeViewFactory {
         let view = HomeView(viewModel: viewModel)
         return view
     }
+    
+    static func createHomeCoordinatorView() -> some View {
+        let navigationController = UINavigationController()
+        
+        let homeCoordinator = HomeCoordinator(navigationController: navigationController)
+        
+        return HomeCoordinatorView(coordinator: homeCoordinator)
+    }
 }

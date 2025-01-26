@@ -11,7 +11,7 @@ import SwiftUI
 struct GameGiveawaysApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeCoordinatorView(coordinator: HomeCoordinator(navigationController: UINavigationController()))
+            HomeViewFactory.createHomeCoordinatorView()
         }
     }
 }
