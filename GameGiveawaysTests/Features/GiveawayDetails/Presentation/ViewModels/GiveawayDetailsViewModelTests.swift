@@ -10,7 +10,10 @@ import Combine
 @testable import GameGiveaways
 
 class GiveawayDetailsViewModelTests: XCTestCase {
-    var mockUseCase: MockGiveawayDetailsUseCase!
+    var mockGiveawayDetailsUseCase: MockGiveawayDetailsUseCase!
+    var mockAddFavoriteUseCase: MockAddFavoriteUseCase!
+    var mockIsFavoriteUseCase: MockIsFavoriteUseCase!
+    var mockRemoveFavoriteUseCase: MockRemoveFavoriteUseCase!
     var mockGiveawayDetailsCoordinator: MockGiveawayDetailsCoordinator!
 
     var viewModel: GiveawayDetailsViewModel!
@@ -20,18 +23,27 @@ class GiveawayDetailsViewModelTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        mockUseCase = MockGiveawayDetailsUseCase()
+        mockGiveawayDetailsUseCase = MockGiveawayDetailsUseCase()
+        mockAddFavoriteUseCase = MockAddFavoriteUseCase()
+        mockIsFavoriteUseCase = MockIsFavoriteUseCase()
+        mockRemoveFavoriteUseCase = MockRemoveFavoriteUseCase()
         mockGiveawayDetailsCoordinator = MockGiveawayDetailsCoordinator()
 
         viewModel = GiveawayDetailsViewModel(
             giveawayID: giveawayID,
-            getGiveawayDetailsUseCase: mockUseCase,
+            getGiveawayDetailsUseCase: mockGiveawayDetailsUseCase,
+            addFavoriteUseCase: mockAddFavoriteUseCase,
+            removeFavoriteUseCase: mockRemoveFavoriteUseCase,
+            isFavoriteUseCase: mockIsFavoriteUseCase,
             coordinator: mockGiveawayDetailsCoordinator)
         cancellables = []
     }
 
     override func tearDown() {
-        mockUseCase = nil
+        mockGiveawayDetailsUseCase = nil
+        mockAddFavoriteUseCase = nil
+        mockIsFavoriteUseCase = nil
+        mockRemoveFavoriteUseCase = nil
         mockGiveawayDetailsCoordinator = nil
         viewModel = nil
         cancellables = nil
@@ -60,7 +72,7 @@ class GiveawayDetailsViewModelTests: XCTestCase {
             description: "Test description"
         )
 
-        mockUseCase.mockGiveawayDetail = expectedGiveaway
+        mockGiveawayDetailsUseCase.mockGiveawayDetail = expectedGiveaway
 
         let expectation = XCTestExpectation(description: "Fetch giveaway details successfully")
         viewModel.fetchGiveawayDetails()
@@ -86,7 +98,7 @@ class GiveawayDetailsViewModelTests: XCTestCase {
     }
 
     func testFetchGiveawayDetails_Failure() {
-        mockUseCase.shouldReturnError = true
+        mockGiveawayDetailsUseCase.shouldReturnError = true
 
         let expectation = XCTestExpectation(description: "Fail to fetch giveaway details")
 
