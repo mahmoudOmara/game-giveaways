@@ -20,13 +20,7 @@ extension GameGiveawaysAPI: TargetType {
     }
 
     var path: String {
-        switch self {
-        case .getAllGiveaways:
-            return "/giveaways"
-            
-        case .getGiveawaysByPlatform(let platform):
-            return "/giveaways?platform=\(platform)"
-        }
+        return "/giveaways"
     }
 
     var method: Moya.Method {
@@ -35,8 +29,11 @@ extension GameGiveawaysAPI: TargetType {
 
     var task: Task {
         switch self {
-        case .getAllGiveaways, .getGiveawaysByPlatform:
+        case .getAllGiveaways:
             return .requestPlain
+            
+        case .getGiveawaysByPlatform(let platform):
+            return .requestParameters(parameters: ["platform": platform], encoding: URLEncoding.default)
         }
     }
 
