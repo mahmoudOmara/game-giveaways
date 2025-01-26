@@ -121,9 +121,10 @@ struct GiveawayCard: View {
         Button(
             action: {
                 UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                viewModel.toggleFavorite()
             },
             label: {
-                Image(systemName: "heart.fill")
+                Image(systemName: viewModel.isFavorited ? "heart.fill" : "heart")
                     .foregroundColor(.white)
                     .padding(8)
                     .background(Color.black.opacity(0.5))
