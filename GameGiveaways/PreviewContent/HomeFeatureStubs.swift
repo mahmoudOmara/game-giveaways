@@ -98,6 +98,10 @@ class HomeFeatureStubs {
         func navigateToDetail(giveawayID: Int) {
             print("Stub navigation to detail for giveaway ID: \(giveawayID)")
         }
+        
+        func navigateToMorePlatforms() {
+            
+        }
     }
 }
 #endif

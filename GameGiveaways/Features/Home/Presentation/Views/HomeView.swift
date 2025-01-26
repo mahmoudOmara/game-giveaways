@@ -94,6 +94,8 @@ struct HomeView: View {
                         title: platform.name,
                         associatedPlatformFilter: .specific(platform))
                 }
+                
+                morePlatformsButton
             }
         }
     }
@@ -112,7 +114,23 @@ struct HomeView: View {
                 Text(title)
                     .font(.system(size: 14, weight: isSelected ? .bold : .regular))
                     .foregroundColor(isSelected ? .black : .gray)
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal, 5)
+                    .padding(.vertical, 6)
+            }
+        )
+    }
+    
+    private var morePlatformsButton: some View {
+        Button(
+            action: {
+                viewModel.navigateToMorePlatforms()
+            },
+            label: {
+                Text("More")
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(.accentColor)
+                    .underline()
+                    .padding(.horizontal, 5)
                     .padding(.vertical, 6)
             }
         )

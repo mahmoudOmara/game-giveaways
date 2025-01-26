@@ -16,11 +16,9 @@ protocol MorePlatformsCoordinatorProtocol {
 
 class MorePlatformsCoordinator: MorePlatformsCoordinatorProtocol {
     var navigationController: UINavigationController
-    let giveawayID: Int
     
-    init(navigationController: UINavigationController, giveawayID: Int) {
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.giveawayID = giveawayID
     }
 
     func start() {

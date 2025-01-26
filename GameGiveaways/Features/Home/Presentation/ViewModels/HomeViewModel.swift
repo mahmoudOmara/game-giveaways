@@ -82,6 +82,10 @@ class HomeViewModel: ObservableObject {
         coordinator.navigateToDetail(giveawayID: giveaway.id)
     }
     
+    func navigateToMorePlatforms() {
+        coordinator.navigateToMorePlatforms()
+    }
+    
     private func loadGiveaways() {
         state = .loading
         getAllGiveawaysUseCase.execute()

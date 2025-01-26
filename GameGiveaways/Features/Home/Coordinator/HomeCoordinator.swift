@@ -11,6 +11,7 @@ protocol HomeCoordinatorProtocol {
     var navigationController: UINavigationController { get }
     func start()
     func navigateToDetail(giveawayID: Int)
+    func navigateToMorePlatforms()
 }
 
 class HomeCoordinator: HomeCoordinatorProtocol {
@@ -29,5 +30,10 @@ class HomeCoordinator: HomeCoordinatorProtocol {
     func navigateToDetail(giveawayID: Int) {
         let detailsCoordinator = GiveawayDetailsCoordinator(navigationController: navigationController, giveawayID: giveawayID)
         detailsCoordinator.start()
+    }
+    
+    func navigateToMorePlatforms() {
+        let morePlatformsCoordinator = MorePlatformsCoordinator(navigationController: navigationController)
+        morePlatformsCoordinator.start()
     }
 }
