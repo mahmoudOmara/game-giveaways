@@ -21,7 +21,17 @@ struct MoreView: View {
             loadingMessage: "Loading More Categories...",
             retryAction: { viewModel.loadGiveaways() },
             content: {
-                contentView(featuredGiveaways: $0.epicGames, categories: $0.platformGiveaways)
+               if $0.isEmpty {
+                    EmptyStateView(
+                        message: "No more giveaways available",
+                        systemImageName: "tray.fill",
+                        actionTitle: "Back to Home"
+                    ) {
+                        viewModel.navigateBackToHome()
+                    }
+                } else {
+                    contentView(featuredGiveaways: $0.epicGames, categories: $0.platformGiveaways)
+                }
             }
         )
         .onAppear {

@@ -8,4 +8,8 @@
 struct MorePlatformsGiveawaysEntity {
     let epicGames: [GiveawayEntity]
     let platformGiveaways: [String: [GiveawayEntity]]
+    
+    var isEmpty: Bool {
+        return epicGames.isEmpty && platformGiveaways.allSatisfy { $0.value.isEmpty }
+    }
 }

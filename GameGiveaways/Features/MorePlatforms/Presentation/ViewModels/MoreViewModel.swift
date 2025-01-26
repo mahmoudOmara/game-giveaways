@@ -46,4 +46,8 @@ class MoreViewModel: ObservableObject {
     func navigateToDetail(giveaway: GiveawayEntity) {
         coordinator.navigateToDetail(giveawayID: giveaway.id)
     }
+    
+    func navigateBackToHome() {
+        coordinator.navigateBackToHome()
+    }
 }

@@ -11,6 +11,7 @@ protocol MorePlatformsCoordinatorProtocol {
     var navigationController: UINavigationController { get }
     func start()
     func navigateToDetail(giveawayID: Int)
+    func navigateBackToHome()
 }
 
 class MorePlatformsCoordinator: MorePlatformsCoordinatorProtocol {
@@ -29,5 +30,9 @@ class MorePlatformsCoordinator: MorePlatformsCoordinatorProtocol {
     func navigateToDetail(giveawayID: Int) {
         let detailsCoordinator = GiveawayDetailsCoordinator(navigationController: navigationController, giveawayID: giveawayID)
         detailsCoordinator.start()
+    }
+    
+    func navigateBackToHome() {
+        navigationController.popViewController(animated: true)
     }
 }
