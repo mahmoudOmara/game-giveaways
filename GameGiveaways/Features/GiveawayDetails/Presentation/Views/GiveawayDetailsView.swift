@@ -84,9 +84,12 @@ struct GiveawayDetailsView: View {
                     })
                 Spacer()
                 Button(
-                    action: { /* Handle favorite action */ },
+                    action: {
+                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                        viewModel.toggleFavorite()
+                    },
                     label: {
-                        Image(systemName: "heart")
+                        Image(systemName: viewModel.isFavorited ? "heart.fill" : "heart")
                             .foregroundColor(.white)
                             .padding()
                             .background(Circle().fill(Color.black.opacity(0.6)))
@@ -182,6 +185,9 @@ struct GiveawayDetailsView: View {
         viewModel: GiveawayDetailsViewModel(
             giveawayID: id,
             getGiveawayDetailsUseCase: GiveawayDetailsFeatureStubs.GiveawayDetailsUseCaseStub(idStub: id),
+            addFavoriteUseCase: FavoriteUseCaseStubs.AddFavoriteUseCaseStub(),
+            removeFavoriteUseCase: FavoriteUseCaseStubs.RemoveFavoriteUseCaseStub(),
+            isFavoriteUseCase: FavoriteUseCaseStubs.IsFavoriteUseCaseStub(),
             coordinator: GiveawayDetailsFeatureStubs.StubGiveawayDetailsCoordinator()
         )
     )
