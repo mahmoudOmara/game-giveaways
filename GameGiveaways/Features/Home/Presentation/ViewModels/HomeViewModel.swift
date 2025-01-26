@@ -27,6 +27,9 @@ class HomeViewModel: ObservableObject {
     private let getMostPopularPlatformsUseCase: GetMostPopularPlatformsUseCaseProtocol
     private let getAllGiveawaysUseCase: GetAllGiveawaysUseCaseProtocol
     private let getFilteredGiveawaysUseCase: GetGiveawaysByPlatformUseCaseProtocol
+    private let addFavoriteUseCase: AddFavoriteUseCaseProtocol
+    private let removeFavoriteUseCase: RemoveFavoriteUseCaseProtocol
+    private let isFavoriteUseCase: IsFavoriteUseCaseProtocol
     private let coordinator: HomeCoordinatorProtocol
 
     private var cancellables = Set<AnyCancellable>()
@@ -38,6 +41,9 @@ class HomeViewModel: ObservableObject {
         getAllGiveawaysUseCase: GetAllGiveawaysUseCaseProtocol,
         getFilteredGiveawaysUseCase: GetGiveawaysByPlatformUseCaseProtocol,
         searchGiveawaysUseCase: SearchGiveawaysUseCaseProtocol,
+        addFavoriteUseCase: AddFavoriteUseCaseProtocol,
+        removeFavoriteUseCase: RemoveFavoriteUseCaseProtocol,
+        isFavoriteUseCase: IsFavoriteUseCaseProtocol,
         coordinator: HomeCoordinatorProtocol
     ) {
         self.getUserProfileUseCase = getUserProfileUseCase
@@ -45,6 +51,9 @@ class HomeViewModel: ObservableObject {
         self.getAllGiveawaysUseCase = getAllGiveawaysUseCase
         self.getFilteredGiveawaysUseCase = getFilteredGiveawaysUseCase
         self.searchGiveawaysUseCase = searchGiveawaysUseCase
+        self.addFavoriteUseCase = addFavoriteUseCase
+        self.removeFavoriteUseCase = removeFavoriteUseCase
+        self.isFavoriteUseCase = isFavoriteUseCase
         self.coordinator = coordinator
         
         setupSearchBinding()
@@ -67,6 +76,18 @@ class HomeViewModel: ObservableObject {
                 self?.platforms = platforms
             }
             .store(in: &cancellables)
+    }
+    
+    func toggleFavorite(_ id: Int) {
+        if isFavoriteUseCase.execute(giveawayID: id) {
+            removeFavoriteUseCase.execute(giveawayID: id)
+        } else {
+            addFavoriteUseCase.execute(giveawayID: id)
+        }
+    }
+    
+    func isFavorite(_ id: Int) -> Bool {
+        isFavoriteUseCase.execute(giveawayID: id)
     }
     
     func refreshConsideringPlatformFilter() {

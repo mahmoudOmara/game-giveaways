@@ -191,6 +191,9 @@ struct HomeView: View {
             getAllGiveawaysUseCase: HomeFeatureStubs.GetAllGiveawaysUseCaseStub(),
             getFilteredGiveawaysUseCase: HomeFeatureStubs.GetGiveawaysByPlatformUseCaseStub(),
             searchGiveawaysUseCase: HomeFeatureStubs.StubSearchGiveawaysUseCase(),
+            addFavoriteUseCase: FavoriteUseCaseStubs.AddFavoriteUseCaseStub(),
+            removeFavoriteUseCase: FavoriteUseCaseStubs.RemoveFavoriteUseCaseStub(),
+            isFavoriteUseCase: FavoriteUseCaseStubs.IsFavoriteUseCaseStub(),
             coordinator: HomeFeatureStubs.StubHomeCoordinator()
         )
     )

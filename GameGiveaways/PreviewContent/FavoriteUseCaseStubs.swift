@@ -1,43 +1,43 @@
-// MARK: - Favorite Use Case Stubs
+//
+//  FavoriteUseCaseStubs.swift
+//  GameGiveaways
+//
+//  Created by mac on 26/01/2025.
+//
 
-struct FavoriteUseCaseStubs {
+#if DEBUG
+import Foundation
+import Combine
+import SwiftUI
+
+class FavoriteUseCaseStubs {
     
-    // Stub for AddFavoriteUseCaseProtocol
+    private static var favoriteIDs = Set<Int>()
+    
     class AddFavoriteUseCaseStub: AddFavoriteUseCaseProtocol {
-        private(set) var addedFavorites = Set<Int>()
-        
         func execute(giveawayID: Int) {
-            addedFavorites.insert(giveawayID)
+            FavoriteUseCaseStubs.favoriteIDs.insert(giveawayID)
         }
     }
     
-    // Stub for RemoveFavoriteUseCaseProtocol
     class RemoveFavoriteUseCaseStub: RemoveFavoriteUseCaseProtocol {
-        private(set) var removedFavorites = Set<Int>()
-        
         func execute(giveawayID: Int) {
-            removedFavorites.insert(giveawayID)
+            FavoriteUseCaseStubs.favoriteIDs.remove(giveawayID)
         }
     }
     
-    // Stub for IsFavoriteUseCaseProtocol
     class IsFavoriteUseCaseStub: IsFavoriteUseCaseProtocol {
-        private var favorites = Set<Int>()
-        
-        init(predefinedFavorites: Set<Int> = []) {
-            self.favorites = predefinedFavorites
-        }
-        
         func execute(giveawayID: Int) -> Bool {
-            return favorites.contains(giveawayID)
+            return FavoriteUseCaseStubs.favoriteIDs.contains(giveawayID)
         }
-        
-        func addFavorite(_ id: Int) {
-            favorites.insert(id)
-        }
-        
-        func removeFavorite(_ id: Int) {
-            favorites.remove(id)
-        }
+    }
+    
+    static func resetFavorites() {
+        favoriteIDs.removeAll()
+    }
+    
+    static func addInitialFavorites(_ ids: [Int]) {
+        favoriteIDs = Set(ids)
     }
 }
+#endif
