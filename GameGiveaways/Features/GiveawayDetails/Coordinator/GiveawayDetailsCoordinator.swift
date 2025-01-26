@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import WebKit
 
 protocol GiveawayDetailsCoordinatorProtocol {
     var navigationController: UINavigationController { get }
     func start()
+    func navigateToGiveawayWebView(with: URL)
     func back()
 }
 
@@ -26,6 +28,12 @@ class GiveawayDetailsCoordinator: GiveawayDetailsCoordinatorProtocol {
         let giveawayDetailsView = GiveawayDetailsViewFactory.createGiveawayDetailsView(giveawayID: giveawayID, coordinator: self)
         let hostingController = UIHostingController(rootView: giveawayDetailsView)
         navigationController.pushViewController(hostingController, animated: true)
+    }
+    
+    func navigateToGiveawayWebView(with url: URL) {
+        let webView = GiveawayDetailsViewFactory.createGiveawayWebView(url: url)
+        let hostingController = UIHostingController(rootView: webView)
+        navigationController.present(hostingController, animated: true)
     }
 
     func back() {

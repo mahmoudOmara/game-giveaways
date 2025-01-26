@@ -58,6 +58,10 @@ class GiveawayDetailsFeatureStubs {
 
         }
         
+        func navigateToGiveawayWebView(with: URL) {
+            
+        }
+        
         func back() {
             
         }
