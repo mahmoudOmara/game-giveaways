@@ -91,7 +91,7 @@ struct HomeView: View {
 
                 ForEach(viewModel.platforms) { platform in
                     platformButton(
-                        title: platform.name,
+                        title: platform.displayName,
                         associatedPlatformFilter: .specific(platform))
                 }
                 

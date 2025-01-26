@@ -16,7 +16,8 @@ class PlatformRepository: PlatformRepositoryProtocol {
 
     private func convertToDomain(_ model: PlatformModel) -> PlatformEntity {
         PlatformEntity(
-            name: model.name
+            displayName: model.displayName,
+            name: model.queryValue
         )
     }
     

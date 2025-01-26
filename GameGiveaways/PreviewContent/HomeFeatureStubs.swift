@@ -34,9 +34,9 @@ class HomeFeatureStubs {
     )
     
     static let samplePlatforms: [PlatformEntity] = [
-        PlatformEntity(name: "PC"),
-        PlatformEntity(name: "PlayStation"),
-        PlatformEntity(name: "Xbox")
+        PlatformEntity(displayName: "PC", name: "pc"),
+        PlatformEntity(displayName: "PlayStation", name: "ps"),
+        PlatformEntity(displayName: "Xbox", name: "x-box")
     ]
     
     class GetUserProfileUseCaseStub: GetUserProfileUseCaseProtocol {
