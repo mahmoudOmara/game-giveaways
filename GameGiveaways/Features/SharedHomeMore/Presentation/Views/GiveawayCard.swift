@@ -128,7 +128,7 @@ struct GiveawayCard: View {
 
     private var cardSize: CGSize {
         switch style {
-        case .large: return CGSize(width: UIScreen.main.bounds.width - 40, height: 220)
+        case .large: return CGSize(width: UIScreen.main.bounds.width - 100, height: 220)
         case .medium: return CGSize(width: 300, height: 160)
         case .small: return CGSize(width: 150, height: 150)
         }
