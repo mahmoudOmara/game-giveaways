@@ -18,4 +18,8 @@ class MockHomeCoordinator: HomeCoordinatorProtocol {
     func navigateToDetail(giveawayID: Int) {
         
     }
+    
+    func navigateToMorePlatforms() {
+        
+    }
 }

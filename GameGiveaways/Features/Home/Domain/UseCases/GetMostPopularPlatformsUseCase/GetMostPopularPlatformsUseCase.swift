@@ -1,5 +1,5 @@
 //
-//  GetPlatformsUseCase.swift
+//  GetMostPopularPlatformsUseCase.swift
 //  GameGiveaways
 //
 //  Created by mac on 23/01/2025.
@@ -7,7 +7,7 @@
 
 import Combine
 
-class GetPlatformsUseCase: GetPlatformsUseCaseProtocol {
+class GetMostPopularPlatformsUseCase: GetMostPopularPlatformsUseCaseProtocol {
     private let repository: PlatformRepositoryProtocol
 
     init(repository: PlatformRepositoryProtocol) {
@@ -15,6 +15,6 @@ class GetPlatformsUseCase: GetPlatformsUseCaseProtocol {
     }
 
     func execute() -> AnyPublisher<[PlatformEntity], Never> {
-        repository.getPlatforms()
+        repository.getMostPopularPlatforms()
     }
 }

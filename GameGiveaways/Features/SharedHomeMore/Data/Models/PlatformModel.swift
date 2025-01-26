@@ -6,5 +6,6 @@
 //
 
 struct PlatformModel {
-    let name: String
+    let displayName: String
+    let queryValue: String
 }

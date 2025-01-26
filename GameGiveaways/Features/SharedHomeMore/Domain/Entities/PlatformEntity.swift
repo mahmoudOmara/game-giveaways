@@ -9,5 +9,6 @@ import Foundation
 
 struct PlatformEntity: Identifiable, Equatable {
     var id = UUID().uuidString
+    let displayName: String
     let name: String
 }

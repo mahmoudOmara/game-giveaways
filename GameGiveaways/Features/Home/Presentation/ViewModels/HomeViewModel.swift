@@ -24,7 +24,7 @@ class HomeViewModel: ObservableObject {
     // MARK: - Dependencies
     private let searchGiveawaysUseCase: SearchGiveawaysUseCaseProtocol
     private let getUserProfileUseCase: GetUserProfileUseCaseProtocol
-    private let getPlatformsUseCase: GetPlatformsUseCaseProtocol
+    private let getMostPopularPlatformsUseCase: GetMostPopularPlatformsUseCaseProtocol
     private let getAllGiveawaysUseCase: GetAllGiveawaysUseCaseProtocol
     private let getFilteredGiveawaysUseCase: GetGiveawaysByPlatformUseCaseProtocol
     private let coordinator: HomeCoordinatorProtocol
@@ -34,14 +34,14 @@ class HomeViewModel: ObservableObject {
     // MARK: - Initializer
     init(
         getUserProfileUseCase: GetUserProfileUseCaseProtocol,
-        getPlatformsUseCase: GetPlatformsUseCaseProtocol,
+        getMostPopularPlatformsUseCase: GetMostPopularPlatformsUseCaseProtocol,
         getAllGiveawaysUseCase: GetAllGiveawaysUseCaseProtocol,
         getFilteredGiveawaysUseCase: GetGiveawaysByPlatformUseCaseProtocol,
         searchGiveawaysUseCase: SearchGiveawaysUseCaseProtocol,
         coordinator: HomeCoordinatorProtocol
     ) {
         self.getUserProfileUseCase = getUserProfileUseCase
-        self.getPlatformsUseCase = getPlatformsUseCase
+        self.getMostPopularPlatformsUseCase = getMostPopularPlatformsUseCase
         self.getAllGiveawaysUseCase = getAllGiveawaysUseCase
         self.getFilteredGiveawaysUseCase = getFilteredGiveawaysUseCase
         self.searchGiveawaysUseCase = searchGiveawaysUseCase
@@ -61,7 +61,7 @@ class HomeViewModel: ObservableObject {
     }
     
     func loadPlatforms() {
-        getPlatformsUseCase.execute()
+        getMostPopularPlatformsUseCase.execute()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] platforms in
                 self?.platforms = platforms
@@ -80,6 +80,10 @@ class HomeViewModel: ObservableObject {
     
     func navigateToDetail(giveaway: GiveawayEntity) {
         coordinator.navigateToDetail(giveawayID: giveaway.id)
+    }
+    
+    func navigateToMorePlatforms() {
+        coordinator.navigateToMorePlatforms()
     }
     
     private func loadGiveaways() {

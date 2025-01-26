@@ -34,9 +34,9 @@ class HomeFeatureStubs {
     )
     
     static let samplePlatforms: [PlatformEntity] = [
-        PlatformEntity(name: "PC"),
-        PlatformEntity(name: "PlayStation"),
-        PlatformEntity(name: "Xbox")
+        PlatformEntity(displayName: "PC", name: "pc"),
+        PlatformEntity(displayName: "PlayStation", name: "ps"),
+        PlatformEntity(displayName: "Xbox", name: "x-box")
     ]
     
     class GetUserProfileUseCaseStub: GetUserProfileUseCaseProtocol {
@@ -47,7 +47,7 @@ class HomeFeatureStubs {
         }
     }
     
-    class GetPlatformsUseCaseStub: GetPlatformsUseCaseProtocol {
+    class GetMostPopularPlatformsUseCaseStub: GetMostPopularPlatformsUseCaseProtocol {
         func execute() -> AnyPublisher<[PlatformEntity], Never> {
             Just(HomeFeatureStubs.samplePlatforms)
                 .setFailureType(to: Never.self)
@@ -97,6 +97,10 @@ class HomeFeatureStubs {
         
         func navigateToDetail(giveawayID: Int) {
             print("Stub navigation to detail for giveaway ID: \(giveawayID)")
+        }
+        
+        func navigateToMorePlatforms() {
+            
         }
     }
 }

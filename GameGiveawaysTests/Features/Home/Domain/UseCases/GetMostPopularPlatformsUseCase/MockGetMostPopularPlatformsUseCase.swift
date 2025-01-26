@@ -1,5 +1,5 @@
 //
-//  MockGetPlatformsUseCase.swift
+//  MockGetMostPopularPlatformsUseCase.swift
 //  GameGiveaways
 //
 //  Created by mac on 24/01/2025.
@@ -10,13 +10,13 @@ import Foundation
 import Combine
 @testable import GameGiveaways
 
-class MockGetPlatformsUseCase: GetPlatformsUseCaseProtocol {
+class MockGetMostPopularPlatformsUseCase: GetMostPopularPlatformsUseCaseProtocol {
     
     func execute() -> AnyPublisher<[GameGiveaways.PlatformEntity], Never> {
         let platforms: [PlatformEntity] = [
-            PlatformEntity(name: "PC"),
-            PlatformEntity(name: "PlayStation"),
-            PlatformEntity(name: "Xbox")
+            PlatformEntity(displayName: "PC", name: "PC"),
+            PlatformEntity(displayName: "PlayStation", name: "PlayStation"),
+            PlatformEntity(displayName: "Xbox", name: "Xbox")
         ]
         return Just(platforms)
             .setFailureType(to: Never.self)
