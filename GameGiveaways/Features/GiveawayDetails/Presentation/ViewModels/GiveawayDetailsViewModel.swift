@@ -11,9 +11,13 @@ import Combine
 class GiveawayDetailsViewModel: ObservableObject {
     // MARK: - Published Properties
     @Published var state: ViewModelState<GiveawayDetailEntity> = .idle
-
+    @Published var isFavorited: Bool
+    
     // MARK: - Dependencies
     private let getGiveawayDetailsUseCase: GetGiveawayDetailsUseCaseProtocol
+    let addFavoriteUseCase: AddFavoriteUseCaseProtocol
+    let removeFavoriteUseCase: RemoveFavoriteUseCaseProtocol
+    let isFavoriteUseCase: IsFavoriteUseCaseProtocol
     private let giveawayID: Int
     private let coordinator: GiveawayDetailsCoordinatorProtocol
 
@@ -22,10 +26,19 @@ class GiveawayDetailsViewModel: ObservableObject {
     // MARK: - Initializer
     init(giveawayID: Int,
          getGiveawayDetailsUseCase: GetGiveawayDetailsUseCaseProtocol,
+         addFavoriteUseCase: AddFavoriteUseCaseProtocol,
+         removeFavoriteUseCase: RemoveFavoriteUseCaseProtocol,
+         isFavoriteUseCase: IsFavoriteUseCaseProtocol,
          coordinator: GiveawayDetailsCoordinatorProtocol) {
         self.giveawayID = giveawayID
         self.getGiveawayDetailsUseCase = getGiveawayDetailsUseCase
+        self.addFavoriteUseCase = addFavoriteUseCase
+        self.removeFavoriteUseCase = removeFavoriteUseCase
+        self.isFavoriteUseCase = isFavoriteUseCase
         self.coordinator = coordinator
+        
+        self.isFavorited = false
+        checkIfFavorite()
     }
 
     // MARK: - Public Methods
@@ -47,7 +60,29 @@ class GiveawayDetailsViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
+    func toggleFavorite() {
+        if isFavorited {
+            removeFavorite()
+        } else {
+            addFavorite()
+        }
+        checkIfFavorite()
+    }
+    
     func navigateBackToHome() {
         coordinator.back()
+    }
+    
+    // MARK: - Private Methods
+    private func checkIfFavorite() {
+        isFavorited = isFavoriteUseCase.execute(giveawayID: giveawayID)
+    }
+    
+    private func addFavorite() {
+        addFavoriteUseCase.execute(giveawayID: giveawayID)
+    }
+    
+    private func removeFavorite() {
+        removeFavoriteUseCase.execute(giveawayID: giveawayID)
     }
 }

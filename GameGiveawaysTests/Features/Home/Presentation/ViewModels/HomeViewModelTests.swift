@@ -16,6 +16,9 @@ class HomeViewModelTests: XCTestCase {
     var mockGetAllGiveawaysUseCase: MockGetAllGiveawaysUseCase!
     var mockGetFilteredGiveawaysUseCase: MockGetGiveawaysByPlatformUseCase!
     var mockSearchGiveawaysUseCase: MockSearchGiveawaysUseCase!
+    var mockAddFavoriteUseCase: MockAddFavoriteUseCase!
+    var mockIsFavoriteUseCase: MockIsFavoriteUseCase!
+    var mockRemoveFavoriteUseCase: MockRemoveFavoriteUseCase!
     var mockHomeCoordinator: MockHomeCoordinator!
     
     var viewModel: HomeViewModel!
@@ -28,6 +31,9 @@ class HomeViewModelTests: XCTestCase {
         mockGetAllGiveawaysUseCase = MockGetAllGiveawaysUseCase()
         mockGetFilteredGiveawaysUseCase = MockGetGiveawaysByPlatformUseCase()
         mockSearchGiveawaysUseCase = MockSearchGiveawaysUseCase()
+        mockAddFavoriteUseCase = MockAddFavoriteUseCase()
+        mockIsFavoriteUseCase = MockIsFavoriteUseCase()
+        mockRemoveFavoriteUseCase = MockRemoveFavoriteUseCase()
         mockHomeCoordinator = MockHomeCoordinator()
         
         viewModel = HomeViewModel(
@@ -36,6 +42,9 @@ class HomeViewModelTests: XCTestCase {
             getAllGiveawaysUseCase: mockGetAllGiveawaysUseCase,
             getFilteredGiveawaysUseCase: mockGetFilteredGiveawaysUseCase,
             searchGiveawaysUseCase: mockSearchGiveawaysUseCase,
+            addFavoriteUseCase: mockAddFavoriteUseCase,
+            removeFavoriteUseCase: mockRemoveFavoriteUseCase,
+            isFavoriteUseCase: mockIsFavoriteUseCase,
             coordinator: mockHomeCoordinator
         )
         cancellables = []
@@ -47,6 +56,9 @@ class HomeViewModelTests: XCTestCase {
         mockGetAllGiveawaysUseCase = nil
         mockGetFilteredGiveawaysUseCase = nil
         mockSearchGiveawaysUseCase = nil
+        mockAddFavoriteUseCase = nil
+        mockIsFavoriteUseCase = nil
+        mockRemoveFavoriteUseCase = nil
         mockHomeCoordinator = nil
         viewModel = nil
         cancellables = nil
