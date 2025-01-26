@@ -6,10 +6,6 @@ GameGiveaways is a SwiftUI-based iOS application that allows users to browse and
 - [📂 Project Structure](#-project-structure)
 - [🚀 Features Overview](#-features-overview)
 - [🏗️ Architecture Overview](#-architecture-overview)
-  - [Domain Layer](#domain-layer)
-  - [Data Layer](#data-layer)
-  - [Presentation Layer](#presentation-layer)
-  - [Coordinators](#coordinators)
 - [🛠️ Dependency Management](#-dependency-management)
 - [🧩 Features Implementation](#-features-implementation)
   - [🏠 Home Feature](#-home-feature)
@@ -52,48 +48,51 @@ GameGiveaways/
 │-- Resources/
 ```
 ## 🚀 Features Overview
+
     1.    Home Screen
         • Displays a list of game giveaways.
         • Filters giveaways by platform.
         • Supports searching giveaways locally.
-       • Favorites management.
+        • Favorites management.
         • Coordinated navigation to details screen.
     2.    Giveaway Details
-        •    Provides detailed information about a selected giveaway.
-        •    Displays platform, worth, users count, and giveaway description.
-        •    Includes a “Get it” button to open the giveaway in an in-app web view.
-       • Favorites management.
+        • Provides detailed information about a selected giveaway.
+        • Displays platform, worth, users count, and giveaway description.
+        • Includes a “Get it” button to open the giveaway in an in-app web view.
+        • Favorites management.
         • Coordinated navigation to giveawat web screen.
     3.    More Section
-        •    Lists giveaways categorized by platforms.
-        •    Features a carousel showcasing epic games giveaways.
-       • Favorites management.       
+        • Lists giveaways categorized by platforms.
+        • Features a carousel showcasing epic games giveaways.
+        • Favorites management. 
         • Coordinated navigation to details screen.
     4.    Favorites Management
-        •    Users can mark/unmark giveaways as favorites across the app.
-        •    Persistence of favorites using UserDefaults.
-        •    Shared across all features.
+        • Users can mark/unmark giveaways as favorites across the app.
+        • Persistence of favorites using UserDefaults.
+        • Shared across all features.
+
+        
 ## 🏗️ Architecture Overview
 
 The app is designed using MVVM (Model-View-ViewModel) with Coordinators for navigation and Factories for dependency injection.
 
     1. Domain Layer
-        •    Entities: Business models such as GiveawayEntity, PlatformEntity, etc.
-        •    Use Cases: Business logic encapsulated in use cases like:
-        •    GetAllGiveawaysUseCase
-        •    GetGiveawaysByPlatformUseCase
-        •    SearchGiveawaysUseCase
-        •    AddFavoriteUseCase
-        •    IsFavoriteUseCase
+        • Entities: Business models such as GiveawayEntity, PlatformEntity, etc.
+        • Use Cases: Business logic encapsulated in use cases like:
+        • GetAllGiveawaysUseCase
+        • GetGiveawaysByPlatformUseCase
+        • SearchGiveawaysUseCase
+        • AddFavoriteUseCase
+        • IsFavoriteUseCase
 
     2. Data Layer
-        •    Repositories: Handles data operations and bridges between domain and data sources.
-        •    Data Sources: Manages API calls or local data retrieval.
-        •    Models: Structures matching API responses and local data objects.
+        • Repositories: Handles data operations and bridges between domain and data sources.
+        • Data Sources: Manages API calls or local data retrieval.
+        • Models: Structures matching API responses and local data objects.
 
     3. Presentation Layer
-        •    Views: SwiftUI-based UI components.
-        •    ViewModels: Handles state management using @Published properties.
+        • Views: SwiftUI-based UI components.
+        • ViewModels: Handles state management using @Published properties.
     4. Coordinators: Manages navigation flow across the app.
 
 Example UseCase:
@@ -339,43 +338,43 @@ Image(systemName: viewModel.isFavorited ? "heart.fill" : "heart")
 This section covers the reusable UI components implemented in the app.
 
 - **StateDrivenView:** Handles loading, empty, success, and failure states for different screens using the shared `ViewModelState` enum.
-  ```swift
-  struct StateDrivenView<Content: View, DataType>: View {
-      let state: ViewModelState<DataType>
-      let loadingMessage: String
-      let retryAction: (() -> Void)?
-      let content: (DataType) -> Content
+```swift
+struct StateDrivenView<Content: View, DataType>: View {
+    let state: ViewModelState<DataType>
+    let loadingMessage: String
+    let retryAction: (() -> Void)?
+    let content: (DataType) -> Content
 
-      var body: some View {
-          switch state {
-          case .idle, .loading:
-              LoadingView(message: loadingMessage)
+    var body: some View {
+        switch state {
+        case .idle, .loading:
+            LoadingView(message: loadingMessage)
 
-          case .success(let data):
-              content(data)
+        case .success(let data):
+            content(data)
 
-          case .failure(let error):
-              ErrorView(message: error, retryAction: retryAction)
-          }
-      }
-  }
-  ```
+        case .failure(let error):
+            ErrorView(message: error, retryAction: retryAction)
+        }
+    }
+}
+```
 
 - **GiveawayCard:** A customizable card view used across the app with different styles and layout options.
-  ```swift
-  GiveawayCard(
-      viewModel: GiveawayCardViewModel(
-          giveaway: giveaway,
-          addFavoriteUseCase: viewModel.addFavoriteUseCase,
-          removeFavoriteUseCase: viewModel.removeFavoriteUseCase,
-          isFavoriteUseCase: viewModel.isFavoriteUseCase
-      ),
-      style: .large,
-      favoriteButtonPlacement: .topTrailing,
-      showPlatforms: true,
-      showDescription: true
-  )
-  ```
+```swift
+GiveawayCard(
+    viewModel: GiveawayCardViewModel(
+        giveaway: giveaway,
+        addFavoriteUseCase: viewModel.addFavoriteUseCase,
+        removeFavoriteUseCase: viewModel.removeFavoriteUseCase,
+        isFavoriteUseCase: viewModel.isFavoriteUseCase
+    ),
+    style: .large,
+    favoriteButtonPlacement: .topTrailing,
+    showPlatforms: true,
+    showDescription: true
+)
+```
 
     *Customization Options:
     - `style`: `.large`, `.medium`, `.small`
@@ -384,159 +383,159 @@ This section covers the reusable UI components implemented in the app.
     - `showDescription`: Bool
 
 - **RotatingCarouselView:** Custom 3D rotating carousel for displaying featured giveaways.
-  ```swift
-  struct RotatingCarouselView: View {
-      @ObservedObject private var viewModel: MoreViewModel
+```swift
+struct RotatingCarouselView: View {
+    @ObservedObject private var viewModel: MoreViewModel
 
-      let giveaways: [GiveawayEntity]
-      @State private var currentIndex: Int = 0
-      @State private var dragOffset: CGFloat = 0
-      private let cardWidth: CGFloat = 300
-      private let spacing: CGFloat = 40
+    let giveaways: [GiveawayEntity]
+    @State private var currentIndex: Int = 0
+    @State private var dragOffset: CGFloat = 0
+    private let cardWidth: CGFloat = 300
+    private let spacing: CGFloat = 40
 
-      var body: some View {
-          VStack(spacing: 10) {
-              carouselStack
-              indexIndicator
-          }
-  }
-  ```
+    var body: some View {
+        VStack(spacing: 10) {
+            carouselStack
+            indexIndicator
+        }
+}
+```
 
 - **WebView:** In-app browser to view giveaways using `WKWebView`.
-  ```swift
-  struct GiveawayWebView: View {
-      let url: URL
-      @Environment(\.presentationMode) var presentationMode
+```swift
+struct GiveawayWebView: View {
+    let url: URL
+    @Environment(\.presentationMode) var presentationMode
 
-      var body: some View {
-        NavigationView {
-            WebViewContainer(url: url)
-                .navigationBarItems(leading: closeButton)
-        }
-      }
-  }
+    var body: some View {
+    NavigationView {
+        WebViewContainer(url: url)
+            .navigationBarItems(leading: closeButton)
+    }
+    }
+}
 
-  struct WebViewContainer: UIViewRepresentable {
-      let url: URL
+struct WebViewContainer: UIViewRepresentable {
+    let url: URL
 
-      func makeUIView(context: Context) -> WKWebView {
-          let webView = WKWebView()
-          let request = URLRequest(url: url)
-          webView.load(request)
-          return webView
-      }
+    func makeUIView(context: Context) -> WKWebView {
+        let webView = WKWebView()
+        let request = URLRequest(url: url)
+        webView.load(request)
+        return webView
+    }
 
-      func updateUIView(_ uiView: WKWebView, context: Context) {}
-  }
-  ```
+    func updateUIView(_ uiView: WKWebView, context: Context) {}
+}
+```
 
 - **EmptyStateView:** Displays an informative message when there is no data available.
-  ```swift
-  struct EmptyStateView: View {
-      let message: String
-      let systemImageName: String
-      let actionTitle: String
-      var tintColor: Color = .accentColor
-      let action: () -> Void
+```swift
+struct EmptyStateView: View {
+    let message: String
+    let systemImageName: String
+    let actionTitle: String
+    var tintColor: Color = .accentColor
+    let action: () -> Void
 
-      var body: some View {
-          VStack {
-              Image(systemName: systemImageName)
-                  .resizable()
-                  .scaledToFit()
-                  .frame(width: 80, height: 80)
-                  .foregroundColor(tintColor)
-              Text(message)
-                  .font(.headline)
-                  .foregroundColor(.gray)
-                  .multilineTextAlignment(.center)
-                  .padding(.horizontal, 30)
-              if let actionTitle = actionTitle, let action = action {
-                Button(action: action) {
-                    Text(actionTitle)
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(tintColor)
-                        .cornerRadius(10)
-                        .shadow(radius: 5)
-                }
-                .padding(.horizontal, 50)
+    var body: some View {
+        VStack {
+            Image(systemName: systemImageName)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 80, height: 80)
+                .foregroundColor(tintColor)
+            Text(message)
+                .font(.headline)
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 30)
+            if let actionTitle = actionTitle, let action = action {
+            Button(action: action) {
+                Text(actionTitle)
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(tintColor)
+                    .cornerRadius(10)
+                    .shadow(radius: 5)
             }
-          }
-          .padding()
-      }
-  }
-  ```
+            .padding(.horizontal, 50)
+        }
+        }
+        .padding()
+    }
+}
+```
 
 - **ErrorView:** Displays an error message with an optional retry action.
-  ```swift
-  struct ErrorView: View {
-      let message: String
-      var tintColor: Color = .accentColor
-      let retryAction: (() -> Void)?
+```swift
+struct ErrorView: View {
+    let message: String
+    var tintColor: Color = .accentColor
+    let retryAction: (() -> Void)?
 
-      var body: some View {
-          VStack {
-            Image(systemName: "exclamationmark.triangle.fill")
-                .resizable()
-                .frame(width: 50, height: 50)
-                .foregroundColor(tintColor)
-                .padding(.top, 20)
-            
-            Text("Oops! Something went wrong")
-                .multilineTextAlignment(.center)
-                .font(.title2)
-                .fontWeight(.bold)
-                .foregroundColor(.black)
-            
-            Text(message)
-                .multilineTextAlignment(.center)
-                .foregroundColor(.gray)
-                .padding(.horizontal, 20)
-            
-            if let retryAction = retryAction {
-                Button(action: retryAction) {
-                    Text("Retry")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .frame(width: 120, height: 44)
-                        .background(tintColor)
-                        .cornerRadius(10)
-                        .shadow(radius: 5)
-                }
+    var body: some View {
+        VStack {
+        Image(systemName: "exclamationmark.triangle.fill")
+            .resizable()
+            .frame(width: 50, height: 50)
+            .foregroundColor(tintColor)
+            .padding(.top, 20)
+        
+        Text("Oops! Something went wrong")
+            .multilineTextAlignment(.center)
+            .font(.title2)
+            .fontWeight(.bold)
+            .foregroundColor(.black)
+        
+        Text(message)
+            .multilineTextAlignment(.center)
+            .foregroundColor(.gray)
+            .padding(.horizontal, 20)
+        
+        if let retryAction = retryAction {
+            Button(action: retryAction) {
+                Text("Retry")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(width: 120, height: 44)
+                    .background(tintColor)
+                    .cornerRadius(10)
+                    .shadow(radius: 5)
             }
         }
-          .padding()
-      }
-  }
-  ```
+    }
+        .padding()
+    }
+}
+```
 
 - **LoadingView:** Displays a loading spinner with an optional message.
-  ```swift
-  struct LoadingView: View {
-      let message: String
-      var tintColor: Color = .accentColor
-      var scale: CGFloat = 1.5
+```swift
+struct LoadingView: View {
+    let message: String
+    var tintColor: Color = .accentColor
+    var scale: CGFloat = 1.5
 
-      var body: some View {
-          VStack(spacing: 16) {
-            ProgressView()
-                .progressViewStyle(CircularProgressViewStyle(tint: tintColor))
-                .scaleEffect(scale)
-            
-            if let message = message {
-                Text(message)
-                    .font(.headline)
-                    .foregroundColor(.gray)
-                    .multilineTextAlignment(.center)
-            }
+    var body: some View {
+        VStack(spacing: 16) {
+        ProgressView()
+            .progressViewStyle(CircularProgressViewStyle(tint: tintColor))
+            .scaleEffect(scale)
+        
+        if let message = message {
+            Text(message)
+                .font(.headline)
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.center)
         }
-          .padding()
-      }
-  }
-  ```
+    }
+        .padding()
+    }
+}
+```
 ## 🧪 Unit Testing
 The project is 61% covered with unit tests using XCTest and Combine testing techniques to verify functionality.
 
