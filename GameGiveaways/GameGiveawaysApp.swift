@@ -12,6 +12,7 @@ struct GameGiveawaysApp: App {
     var body: some Scene {
         WindowGroup {
             HomeViewFactory.createHomeCoordinatorView()
+                .preferredColorScheme(.light)
         }
     }
 }
