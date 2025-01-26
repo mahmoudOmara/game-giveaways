@@ -11,7 +11,7 @@ struct RotatingCarouselView: View {
     let giveaways: [GiveawayEntity]
     @State private var currentIndex: Int = 0
     @State private var dragOffset: CGFloat = 0
-    private let cardWidth: CGFloat = UIScreen.main.bounds.width - 100
+    private let cardWidth: CGFloat = 300
     private let spacing: CGFloat = 40
     
     var body: some View {
@@ -50,7 +50,7 @@ struct RotatingCarouselView: View {
     private func carouselCard(giveaway: GiveawayEntity, index: Int) -> some View {
         GiveawayCard(
             giveaway: giveaway,
-            style: .large,
+            style: .medium,
             favoriteButtonPlacement: .none,
             showPlatforms: false,
             showDiscription: true

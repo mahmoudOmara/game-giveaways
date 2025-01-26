@@ -39,33 +39,14 @@ struct MoreView: View {
                     .bold()
                     .padding(.horizontal)
                 
-                featuredCarousel(giveaways: featuredGiveaways)
+                RotatingCarouselView(giveaways: featuredGiveaways)
+                    .frame(height: 180)
+                    .frame(maxWidth: .infinity)
                 
                 categoriesList(categories: categories)
             }
             .padding(.horizontal)
         }
-    }
-    
-    // MARK: - Featured Carousel View
-    private func featuredCarousel(giveaways: [GiveawayEntity]) -> some View {
-        TabView {
-            ForEach(giveaways) { giveaway in
-                carouselCard(giveaway: giveaway)
-            }
-        }
-        .frame(height: 250)
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-    }
-    
-    // MARK: - Carousel Card
-    private func carouselCard(giveaway: GiveawayEntity) -> some View {
-        GiveawayCard(
-            giveaway: giveaway,
-            style: .large,
-            favoriteButtonPlacement: .none,
-            showPlatforms: false,
-            showDiscription: true)
     }
     
     // MARK: - Remaining Categories View
