@@ -81,7 +81,8 @@ struct MoreView: View {
 #Preview {
     MoreView(
         viewModel: MoreViewModel(
-            getMoreGiveawaysUseCase: MoreFeatureStubs.StubGetMoreGiveawaysUseCase()
+            getMoreGiveawaysUseCase: MoreFeatureStubs.StubGetMoreGiveawaysUseCase(),
+            coordinator: MoreFeatureStubs.StubMorePlatformsCoordinator()
         )
     )
 }

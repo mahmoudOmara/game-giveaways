@@ -8,6 +8,7 @@
 #if DEBUG
 import Foundation
 import Combine
+import SwiftUI
 
 class MoreFeatureStubs {
     static let epicGamesGiveaways = [
@@ -106,6 +107,22 @@ class MoreFeatureStubs {
             return Just(MorePlatformsGiveawaysEntity(epicGames: epicGamesGiveaways, platformGiveaways: filteredPlatforms))
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
+        }
+    }
+    
+    class StubMorePlatformsCoordinator: MorePlatformsCoordinatorProtocol {
+        var navigationController: UINavigationController = UINavigationController()
+        
+        func start() {
+
+        }
+        
+        func navigateToDetail(giveawayID: Int) {
+            
+        }
+        
+        func back() {
+            
         }
     }
 }

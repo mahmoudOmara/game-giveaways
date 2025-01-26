@@ -11,12 +11,18 @@ import Combine
 class MoreViewModel: ObservableObject {
     @Published var state: ViewModelState<MorePlatformsGiveawaysEntity> = .idle
 
+    // MARK: - Dependencies
     private let getMoreGiveawaysUseCase: GetMoreGiveawaysUseCaseProtocol
+    private let coordinator: MorePlatformsCoordinatorProtocol
+
     private var cancellables = Set<AnyCancellable>()
 
-    init(getMoreGiveawaysUseCase: GetMoreGiveawaysUseCaseProtocol) {
-        self.getMoreGiveawaysUseCase = getMoreGiveawaysUseCase
-    }
+    init(
+        getMoreGiveawaysUseCase: GetMoreGiveawaysUseCaseProtocol,
+        coordinator: MorePlatformsCoordinatorProtocol) {
+            self.getMoreGiveawaysUseCase = getMoreGiveawaysUseCase
+            self.coordinator = coordinator
+        }
 
     func loadGiveaways() {
         state = .loading
