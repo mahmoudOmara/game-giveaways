@@ -24,7 +24,6 @@ struct MoreView: View {
                 contentView(featuredGiveaways: $0.epicGames, categories: $0.platformGiveaways)
             }
         )
-        .navigationBarHidden(true)
         .onAppear {
             viewModel.loadGiveaways()
         }
