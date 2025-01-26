@@ -34,6 +34,7 @@ struct MoreView: View {
                 }
             }
         )
+        .navigationBarHidden(false)
         .onAppear {
             viewModel.loadGiveaways()
         }

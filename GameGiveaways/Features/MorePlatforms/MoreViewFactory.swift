@@ -9,7 +9,10 @@ import SwiftUICore
 
 struct MoreViewFactory {
     static func createMoreView(coordinator: MorePlatformsCoordinatorProtocol) -> some View {
-        let giveawaysRepository = SharedFactory.getSharedGiveawaysRepository()
+        let apiClient = ApiClient()
+        let giveawaysRemoteDataSource = GiveawaysRemoteDataSource(apiClient: apiClient)
+        let giveawaysRepository = GiveawaysRepository(dataSource: giveawaysRemoteDataSource)
+        
         let platformsLocalDataSource = PlatformsLocalDataSource()
 
         let platformRepository = PlatformRepository(dataSource: platformsLocalDataSource)
