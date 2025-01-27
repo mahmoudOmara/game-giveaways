@@ -19,6 +19,7 @@ class MoreViewModel: ObservableObject {
     private let coordinator: MorePlatformsCoordinatorProtocol
 
     private var cancellables = Set<AnyCancellable>()
+    private var hasLoaded = false
 
     init(
         getMoreGiveawaysUseCase: GetMoreGiveawaysUseCaseProtocol,
@@ -32,7 +33,15 @@ class MoreViewModel: ObservableObject {
             self.isFavoriteUseCase = isFavoriteUseCase
             self.coordinator = coordinator
         }
-
+    
+    // MARK: - Public Methods
+    
+    func onAppear() {
+        guard !hasLoaded else { return }
+        loadGiveaways()
+        hasLoaded = true
+    }
+    
     func loadGiveaways() {
         state = .loading
 

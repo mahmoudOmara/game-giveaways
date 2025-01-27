@@ -28,9 +28,7 @@ struct HomeView: View {
             .padding(.horizontal)
             .navigationBarHidden(true)
             .onAppear {
-                viewModel.loadUserProfile()
-                viewModel.loadPlatforms()
-                viewModel.platformFilter = .all
+                viewModel.onAppear()
             }
         }
     }

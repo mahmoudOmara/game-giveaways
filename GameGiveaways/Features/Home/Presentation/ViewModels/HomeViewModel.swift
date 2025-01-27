@@ -33,6 +33,7 @@ class HomeViewModel: ObservableObject {
     private let coordinator: HomeCoordinatorProtocol
 
     private var cancellables = Set<AnyCancellable>()
+    private var hasLoaded = false
     
     // MARK: - Initializer
     init(
@@ -60,22 +61,13 @@ class HomeViewModel: ObservableObject {
     }
     
     // MARK: - Public Methods
-    func loadUserProfile() {
-        getUserProfileUseCase.execute()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] user in
-                self?.user = user
-            }
-            .store(in: &cancellables)
-    }
     
-    func loadPlatforms() {
-        getMostPopularPlatformsUseCase.execute()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] platforms in
-                self?.platforms = platforms
-            }
-            .store(in: &cancellables)
+    func onAppear() {
+        guard !hasLoaded else { return }
+        loadUserProfile()
+        loadPlatforms()
+        platformFilter = .all
+        hasLoaded = true
     }
     
     func refreshConsideringPlatformFilter() {
@@ -93,6 +85,24 @@ class HomeViewModel: ObservableObject {
     
     func navigateToMorePlatforms() {
         coordinator.navigateToMorePlatforms()
+    }
+    
+    private func loadUserProfile() {
+        getUserProfileUseCase.execute()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] user in
+                self?.user = user
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func loadPlatforms() {
+        getMostPopularPlatformsUseCase.execute()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] platforms in
+                self?.platforms = platforms
+            }
+            .store(in: &cancellables)
     }
     
     private func loadGiveaways() {
