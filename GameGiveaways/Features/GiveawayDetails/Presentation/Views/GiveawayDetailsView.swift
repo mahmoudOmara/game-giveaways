@@ -111,25 +111,29 @@ struct GiveawayDetailsView: View {
                             .foregroundColor(.green)
                     }
                     Spacer()
-                    Button(
-                        action: {
-                            viewModel.openGiveaway()
-                        },
-                        label: {
-                            Text("Get it")
-                                .foregroundColor(.primary)
-                                .font(.subheadline)
-                                .fontWeight(.medium)
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 6)
-                                .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
-                        })
+                    getItButton
                 }
                 .padding(.horizontal)
                 .padding(.bottom, 20)
             }
         }
         .frame(height: 300)
+    }
+    
+    private var getItButton: some View {
+        Button(
+            action: {
+                viewModel.openGiveaway()
+            },
+            label: {
+                Text("Get it")
+                    .foregroundColor(.primary)
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
+            })
     }
 
     // MARK: - Stats Section
