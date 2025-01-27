@@ -5,16 +5,16 @@ GameGiveaways is a SwiftUI-based iOS application that allows users to browse and
 ## 📖 Table of Contents
 - [📂 Project Structure](#-project-structure)
 - [🚀 Features Overview](#-features-overview)
-- [🏗️ Architecture Overview](#architecture-overview)
-- [🛠️ Dependency Management](#dependency-management)
+- [🏗️ Architecture Overview](#-architecture-overview)
+- [🛠️ Dependency Management](#-dependency-management)
 - [🧩 Features Implementation](#-features-implementation)
   - [🏠 Home Feature](#-home-feature)
   - [📄 Giveaway Details Feature](#-giveaway-details-feature)
   - [🔍 More Feature](#-more-feature)
-  - [❤️ Favorites Feature](#favorites-feature)
+  - [💖 Favorites Feature](#-favorites-feature)
 - [🎨 UI Components](#-ui-components)
 - [🧪 Unit Testing](#-unit-testing)
-- [🏗️ Coordinators](#coordinators)
+- [🏗️ Coordinators](#-coordinators)
 - [📦 Dependency Injection](#-dependency-injection)
 - [🔧 Setup Instructions](#-setup-instructions)
 - [🚀 Future Enhancements](#-future-enhancements)
@@ -73,7 +73,7 @@ GameGiveaways/
         • Shared across all features.
 
         
-## 🏗️ Architecture Overview
+## 🏗 Architecture Overview
 
 The app is designed using MVVM (Model-View-ViewModel) with Coordinators for navigation and Factories for dependency injection.
 
@@ -158,7 +158,7 @@ class HomeCoordinator: HomeCoordinatorProtocol {
     }
 }
 ```
-## 🛠️ Dependency Management
+## 🛠 Dependency Management
 
 The project utilizes **Swift Package Manager (SPM)** for dependency management. The following dependencies are integrated:
 
@@ -301,7 +301,7 @@ A custom rotating carousel effect is implemented for the featured Epic Games sec
     )
 ```
 
-### ❤️ Favorites Feature
+### 💖 Favorites Feature
 
 The Favorites feature allows users to mark giveaways as favorites, which are accessible across the entire app.
 
@@ -561,7 +561,7 @@ func testLoadGiveawaysSuccess() {
     wait(for: [expectation], timeout: 5.0)
 }
 ```
-## 🏗️ Coordinators
+## 🏗 Coordinators
 
 All features utilize the coordinator pattern for navigation to separate concerns:
 
