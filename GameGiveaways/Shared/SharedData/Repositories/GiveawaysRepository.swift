@@ -42,24 +42,32 @@ class GiveawaysRepository: GiveawaysRepositoryProtocol {
             description: model.description
         )
     }
+    
+    private func insertOrUpdateStoredGiveaways(with giveaways: [GiveawayModel]) {
+        for newGiveaway in giveaways {
+            if let index = storedGiveaways.firstIndex(where: { $0.id == newGiveaway.id }) {
+                storedGiveaways[index] = newGiveaway
+            } else {
+                storedGiveaways.append(newGiveaway)
+            }
+        }
+    }
 
     func getAllGiveaways() -> AnyPublisher<[GiveawayEntity], Error> {
-        // this should assign storedGiveaways
         // No need to keep a weak reference of self as the map function will return immediately
         dataSource.fetchAllGiveaways()
             .handleEvents(receiveOutput: { [weak self] giveaways in
-                self?.storedGiveaways = giveaways
+                self?.insertOrUpdateStoredGiveaways(with: giveaways)
             })
             .map { $0.map { self.convertToDomain($0) } }
             .eraseToAnyPublisher()
     }
 
     func getGiveawaysByPlatform(platform: String) -> AnyPublisher<[GiveawayEntity], Error> {
-        // this should assign storedGiveaways
         // No need to keep a weak reference of self as the map function will return immediately
         dataSource.fetchGiveawaysByPlatform(platform: platform)
             .handleEvents(receiveOutput: { [weak self] giveaways in
-                self?.storedGiveaways = giveaways
+                self?.insertOrUpdateStoredGiveaways(with: giveaways)
             })
             .map { $0.map { self.convertToDomain($0) } }
             .eraseToAnyPublisher()
