@@ -11,7 +11,7 @@ GameGiveaways is a SwiftUI-based iOS application that allows users to browse and
   - [🏠 Home Feature](#-home-feature)
   - [📄 Giveaway Details Feature](#-giveaway-details-feature)
   - [🔍 More Feature](#-more-feature)
-  - [❤️ Favorites Feature](#-favorites-feature)
+  - [💖 Favorites Feature](#-favorites-feature)
 - [🎨 UI Components](#-ui-components)
 - [🧪 Unit Testing](#-unit-testing)
 - [🏗️ Coordinators](#-coordinators)
@@ -301,7 +301,7 @@ A custom rotating carousel effect is implemented for the featured Epic Games sec
     )
 ```
 
-### ❤ Favorites Feature
+### 💖 Favorites Feature
 
 The Favorites feature allows users to mark giveaways as favorites, which are accessible across the entire app.
 
