@@ -11,7 +11,8 @@ import SwiftUI
 struct GameGiveawaysApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeViewFactory.createHomeCoordinatorView()
+                .preferredColorScheme(.light)
         }
     }
 }
